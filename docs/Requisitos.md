@@ -1,3 +1,37 @@
+# Requisitos Funcionais – Rastreador de Pets (MVP)
+
+## 1. Autenticação e Autorização
+- **RF-01**: Usuário pode criar conta e fazer login (JWT).
+- **RF-02**: Papéis: USER e ADMIN.
+- **RF-03**: Implementar política de privacidade visível no app e consentimento de uso de dados.
+
+## 2. Gestão de Assinaturas/Planos
+- **RF-04**: Listar planos disponíveis.
+- **RF-05**: Assinar plano (checkout simulado) e ver status da assinatura.
+- **RF-06**: Permitir troca ou cancelamento do plano.
+
+## 3. Pets e Dispositivos
+- **RF-07**: CRUD de Pet (nome, espécie, foto).
+- **RF-08**: Vincular dispositivo ao pet via serial + secret (pairing).
+- **RF-09**: Mostrar status do dispositivo (online/offline, última comunicação).
+
+## 4. Telemetria e Rastreamento
+- **RF-10**: Receber telemetria do device via AWS IoT Core → Lambda → API `/ingest/telemetry`.
+- **RF-11**: Visualizar posição atual do pet no mapa.
+- **RF-12**: Exibir histórico de rota por período.
+- **RF-13**: Atualização em tempo real (SSE/WebSocket).
+
+## 5. Geofences e Alertas
+- **RF-14**: Criar/editar geofences (polígono GeoJSON).
+- **RF-15**: Gerar alertas ao entrar/sair de geofence.
+- **RF-16**: Enviar notificações por e-mail/SNS (simulado).
+
+## 6. Experiência do Usuário
+- **RF-17**: Jornada: landing → cadastro → plano → vincular device → dashboard.
+- **RF-18**: Dashboard com última localização, mapa, bateria e notificações.
+- **RF-19**: Cadastro e edição de perfil do tutor (nome, contato, preferências).
+
+
 # Requisitos Não Funcionais – Rastreador de Pets
 
 ## Segurança
