@@ -23,7 +23,7 @@
 
 1. Coleta de latitude/longitude.
 2. Leitura de status de bateria.
-3. Envio de telemetria via MQTT → AWS IoT Core.
+3. Envio de telemetria via Firebase.
 
 ## Integração AWS
 
@@ -31,7 +31,6 @@
 2. Lambda: processamento de mensagens e envio para Backend.
 3. RDS (MySQL): persistência de dados.
 4. S3 (opcional): imagens/documentos.
-
 
 ### 🚫 Excluído
 
@@ -44,6 +43,6 @@
 
 1. Usuário cadastrado escolhe um plano/adquire a coleira (simulado).
 2. Usuário vincula dispositivo a um pet/coleira.
-3. Dispositivo GPS envia telemetria real → IoT Core → Backend → Frontend.
+3. Dispositivo GPS envia telemetria real → Firebase → Backend → Frontend.
 4. Dashboard mostra localização em tempo real no mapa.
 5. Sistema dispara alerta de geofence quando o pet sai/entra da área definida.
