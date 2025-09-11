@@ -27,7 +27,7 @@
 
 ## Integração AWS
 
-1. IoT Core: recepção de telemetria.
+1. Firebase: recepção de telemetria.
 2. Lambda: processamento de mensagens e envio para Backend.
 3. RDS (MySQL): persistência de dados.
 4. S3 (opcional): imagens/documentos.
