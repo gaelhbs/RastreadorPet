@@ -1,4 +1,8 @@
 package com.senai.rastreadorpet.repositories;
 
-public class PaymentMethodRepository {
+import com.senai.rastreadorpet.models.PaymentMethodModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PaymentMethodRepository extends JpaRepository<PaymentMethodModel, Integer> {
+
 }
