@@ -33,8 +33,7 @@ public class PaymentMethodModel {
     }
 
     /*
-    @ManyToOne
-    @JoinColumn(name = "receipt_id")
-    private ReceiptModel receipt;
+    @OneToMany(mappedBy = "paymentMethod")
+    private List<ReceiptModel> receipt = new ArrayList<>();
     */
 }

@@ -5,24 +5,29 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "monthly_plans")
+@Table(name = "plano_mensal")
 public class MonthlyPlanModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "nome", unique = true, nullable = false)
     private String name;
+
+    @Column(name = "descrição")
     private String description;
-    private BigDecimal monthlyPrice;
+
+    @Column(name = "preço", nullable = false)
+    private BigDecimal price;
 
     public MonthlyPlanModel() {
     }
 
-    public MonthlyPlanModel(int id, String name, String description, BigDecimal monthlyPrice) {
-        this.id = id;
+    public MonthlyPlanModel(String name, String description, BigDecimal price) {
         this.name = name;
         this.description = description;
-        this.monthlyPrice = monthlyPrice;
+        this.price = price;
     }
 
     public int getId(){
@@ -50,11 +55,15 @@ public class MonthlyPlanModel {
     }
 
     public BigDecimal getMonthlyPrice() {
-        return monthlyPrice;
+        return price;
     }
 
     public void setMonthlyPrice(BigDecimal monthlyPrice) {
-        this.monthlyPrice = monthlyPrice;
+        this.price = monthlyPrice;
     }
 
+     /*
+    @OneToMany(mappedBy = "monthlyPlan")
+    private List<SubscriptionModel> subscriptions = new ArrayList<>();
+    */
 }

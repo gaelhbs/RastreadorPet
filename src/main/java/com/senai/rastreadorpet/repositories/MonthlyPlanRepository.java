@@ -1,4 +1,7 @@
 package com.senai.rastreadorpet.repositories;
 
-public class MonthlyPlanRepository {
+import com.senai.rastreadorpet.models.MonthlyPlanModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MonthlyPlanRepository extends JpaRepository<MonthlyPlanModel, Integer> {
 }
