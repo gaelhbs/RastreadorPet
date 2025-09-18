@@ -11,8 +11,7 @@ public class PetService {
     @Autowired
     private PetRepository petRepository;
 
-    public Pet salvar(Pet pet) {
-        // Futuramente, aqui entrarão as regras de negócio.
+    public Pet save(Pet pet) {
         return petRepository.save(pet);
     }
 }
