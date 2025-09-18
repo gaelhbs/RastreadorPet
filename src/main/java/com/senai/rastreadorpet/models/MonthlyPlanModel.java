@@ -1,9 +1,15 @@
 package com.senai.rastreadorpet.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "monthly_plan")
 public class MonthlyPlanModel {
@@ -20,47 +26,6 @@ public class MonthlyPlanModel {
 
     @Column(name = "price", nullable = false)
     private BigDecimal price;
-
-    public MonthlyPlanModel() {
-    }
-
-    public MonthlyPlanModel(String name, String description, BigDecimal price) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-    }
-
-    public int getId(){
-        return id;
-    }
-
-    public void setId(int id){
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public BigDecimal getMonthlyPrice() {
-        return price;
-    }
-
-    public void setMonthlyPrice(BigDecimal monthlyPrice) {
-        this.price = monthlyPrice;
-    }
 
      /*
     @OneToMany(mappedBy = "monthlyPlan")

@@ -1,4 +1,9 @@
 package com.senai.rastreadorpet.repositories;
 
-public class UserRepository {
+import com.senai.rastreadorpet.models.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Integer> {
 }

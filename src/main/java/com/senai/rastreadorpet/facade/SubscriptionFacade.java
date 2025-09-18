@@ -1,25 +1,25 @@
 package com.senai.rastreadorpet.facade;
 
+import com.senai.rastreadorpet.applications.SubscriptionApplication;
 import com.senai.rastreadorpet.models.Subscription;
-import com.senai.rastreadorpet.services.SubscriptionService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class SubscriptionFacade {
 
-    @Autowired
-    private SubscriptionService subscriptionService;
+    private final SubscriptionApplication subscriptionApplication;
 
     public Subscription createNewSubscription(Subscription subscription) {
-        return subscriptionService.save(subscription);
+        return subscriptionApplication.save(subscription);
     }
 
     public Subscription cancelSubscription(int subscriptionId) {
-        return subscriptionService.cancel(subscriptionId);
+        return subscriptionApplication.cancel(subscriptionId);
     }
 
     public Subscription reactivateSubscription(int subscriptionId) {
-        return subscriptionService.reactivate(subscriptionId);
+        return subscriptionApplication.reactivate(subscriptionId);
     }
 }
