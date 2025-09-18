@@ -11,7 +11,7 @@ public class PetFacade {
     @Autowired
     private PetService petService;
 
-    public Pet cadastrarNovoPet(Pet pet) {
-        return petService.salvar(pet);
+    public Pet registerNewPet(Pet pet) {
+        return petService.save(pet);
     }
 }
