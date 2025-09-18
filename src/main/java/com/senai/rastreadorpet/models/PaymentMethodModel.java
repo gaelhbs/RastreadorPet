@@ -3,14 +3,14 @@ package com.senai.rastreadorpet.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "forma_pagamento")
+@Table(name = "payment_method")
 public class PaymentMethodModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "forma")
+    @Column(name = "method")
     private String method;
 
     public PaymentMethodModel() {

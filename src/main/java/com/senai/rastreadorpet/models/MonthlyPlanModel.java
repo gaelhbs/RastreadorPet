@@ -5,20 +5,20 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "plano_mensal")
+@Table(name = "monthly_plan")
 public class MonthlyPlanModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "nome", unique = true, nullable = false)
+    @Column(name = "name", unique = true, nullable = false)
     private String name;
 
-    @Column(name = "descrição")
+    @Column(name = "description")
     private String description;
 
-    @Column(name = "preço", nullable = false)
+    @Column(name = "price", nullable = false)
     private BigDecimal price;
 
     public MonthlyPlanModel() {
