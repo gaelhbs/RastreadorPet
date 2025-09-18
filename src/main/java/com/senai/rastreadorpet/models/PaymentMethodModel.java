@@ -1,36 +1,23 @@
 package com.senai.rastreadorpet.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "forma_pagamento")
+@Table(name = "payment_method")
 public class PaymentMethodModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "forma")
+    @Column(name = "method")
     private String method;
-
-    public PaymentMethodModel() {
-    }
-
-    public PaymentMethodModel(String method) {
-        this.method = method;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getMethod() {
-        return method;
-    }
-
-    public void setMethod(String method) {
-        this.method = method;
-    }
 
     /*
     @OneToMany(mappedBy = "paymentMethod")
