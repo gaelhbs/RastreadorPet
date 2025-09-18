@@ -1,6 +1,6 @@
 package com.senai.rastreadorpet.models;
 
-import com.senai.rastreadorpet.models.enums.PetGenero;
+import com.senai.rastreadorpet.models.enums.PetGender;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
@@ -14,73 +14,75 @@ public class Pet {
     private int id;
 
     @Column(name = "pet_nome", nullable = false)
-    private String nome;
+    private String name;
 
     @Column(name = "pet_especie")
-    private String especie;
+    private String species;
 
     @Column(name = "pet_raca")
-    private String raca;
+    private String breed;
 
     @Column(name = "pet_data_nascimento")
-    private LocalDate dataNascimento;
+    private LocalDate birthDate;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "pet_genero")
-    private PetGenero genero;
+    private PetGender gender;
 
     @Column(name = "pet_url_foto")
-    private String urlFoto;
+    private String photoUrl;
+
+    // Getters and Setters
 
     public int getId() {
         return id;
     }
-  
-    public String getNome() {
-        return nome;
+    
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getEspecie() {
-        return especie;
+    public String getSpecies() {
+        return species;
     }
 
-    public void setEspecie(String especie) {
-        this.especie = especie;
+    public void setSpecies(String species) {
+        this.species = species;
     }
 
-    public String getRaca() {
-        return raca;
+    public String getBreed() {
+        return breed;
     }
 
-    public void setRaca(String raca) {
-        this.raca = raca;
+    public void setBreed(String breed) {
+        this.breed = breed;
     }
 
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
+    public LocalDate getBirthDate() {
+        return birthDate;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
-    public PetGenero getGenero() {
-        return genero;
+    public PetGender getGender() {
+        return gender;
     }
 
-    public void setGenero(PetGenero genero) {
-        this.genero = genero;
+    public void setGender(PetGender gender) {
+        this.gender = gender;
     }
 
-    public String getUrlFoto() {
-        return urlFoto;
+    public String getPhotoUrl() {
+        return photoUrl;
     }
 
-    public void setUrlFoto(String urlFoto) {
-        this.urlFoto = urlFoto;
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 }
