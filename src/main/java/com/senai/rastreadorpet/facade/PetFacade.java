@@ -1,17 +1,23 @@
 package com.senai.rastreadorpet.facade;
 
+import com.senai.rastreadorpet.applications.PetApplication;
 import com.senai.rastreadorpet.models.Pet;
-import com.senai.rastreadorpet.services.PetService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
+@RequiredArgsConstructor
 public class PetFacade {
 
-    @Autowired
-    private PetService petService;
+    private final PetApplication petApplication;
 
-    public Pet registerNewPet(Pet pet) {
-        return petService.save(pet);
+    public Pet save(Pet pet) {
+        return petApplication.save(pet);
+    }
+
+    public List<Pet> findAll() {
+        return petApplication.findAll();
     }
 }

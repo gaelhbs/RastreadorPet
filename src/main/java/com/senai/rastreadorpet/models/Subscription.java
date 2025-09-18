@@ -2,8 +2,15 @@ package com.senai.rastreadorpet.models;
 
 import com.senai.rastreadorpet.models.enums.SubscriptionStatus;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "assinaturas")
 public class Subscription {
@@ -22,34 +29,4 @@ public class Subscription {
     @Enumerated(EnumType.STRING)
     @Column(name = "assinatura_status", nullable = false)
     private SubscriptionStatus status;
-
-    // Getters and Setters
-
-    public int getId() {
-        return id;
-    }
-    
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public SubscriptionStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(SubscriptionStatus status) {
-        this.status = status;
-    }
 }
