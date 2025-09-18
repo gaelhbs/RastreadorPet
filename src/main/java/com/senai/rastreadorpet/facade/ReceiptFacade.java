@@ -1,7 +1,7 @@
 package com.senai.rastreadorpet.facade;
 
 import com.senai.rastreadorpet.models.Receipt;
-import com.senai.rastreadorpet.services.ReceiptService;
+import com.senai.rastreadorpet.applications.ReceiptApplication; // Import atualizado
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -9,9 +9,9 @@ import org.springframework.stereotype.Component;
 public class ReceiptFacade {
 
     @Autowired
-    private ReceiptService receiptService;
+    private ReceiptApplication receiptApplication; 
 
     public Receipt registerNewReceipt(Receipt receipt) {
-        return receiptService.save(receipt);
+        return receiptApplication.save(receipt); 
     }
 }
