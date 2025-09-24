@@ -1,3 +1,4 @@
+
 package com.senai.rastreadorpet.entities;
 
 import jakarta.persistence.*;
@@ -11,8 +12,15 @@ import lombok.*;
 public class Geofence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "geofence_id")
     private int id;
+
+    @Column(name = "geofence_name", nullable = false)
     private String name;
+
+    @Column(name = "geofence_area" , nullable = false)
     private float area;
+
+    @Column(name = "geofence_active", nullable = false)
     private boolean active;
 }
