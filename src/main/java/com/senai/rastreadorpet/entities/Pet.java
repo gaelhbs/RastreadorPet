@@ -1,6 +1,6 @@
-package com.senai.rastreadorpet.models;
+package com.senai.rastreadorpet.entities;
 
-import com.senai.rastreadorpet.models.enums.PetGender;
+import com.senai.rastreadorpet.entities.enums.PetGender;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.senai.rastreadorpet.models;
+package com.senai.rastreadorpet.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Table(name = "locations")
-public class LocationModel {
+public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,6 +1,6 @@
-package com.senai.rastreadorpet.models;
+package com.senai.rastreadorpet.entities;
 
-import com.senai.rastreadorpet.models.enums.ReceiptStatus;
+import com.senai.rastreadorpet.entities.enums.ReceiptStatus;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

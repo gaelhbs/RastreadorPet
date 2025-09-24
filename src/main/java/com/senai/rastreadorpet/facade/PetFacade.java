@@ -1,7 +1,7 @@
 package com.senai.rastreadorpet.facade;
 
 import com.senai.rastreadorpet.applications.PetApplication;
-import com.senai.rastreadorpet.models.Pet;
+import com.senai.rastreadorpet.entities.Pet;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package com.senai.rastreadorpet.models;
+package com.senai.rastreadorpet.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "geofences")
-public class GeofenceModel {
+public class Geofence {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

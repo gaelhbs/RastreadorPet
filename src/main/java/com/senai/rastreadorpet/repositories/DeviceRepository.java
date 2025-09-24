@@ -1,7 +1,7 @@
 package com.senai.rastreadorpet.repositories;
 
-import com.senai.rastreadorpet.models.DeviceModel;
+import com.senai.rastreadorpet.entities.Device;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface DeviceRepository extends JpaRepository<DeviceModel, Integer> {
+public interface DeviceRepository extends JpaRepository<Device, Integer> {
 }

@@ -1,6 +1,6 @@
 package com.senai.rastreadorpet.applications;
 
-import com.senai.rastreadorpet.models.Receipt;
+import com.senai.rastreadorpet.entities.Receipt;
 import com.senai.rastreadorpet.repositories.ReceiptRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

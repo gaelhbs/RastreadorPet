@@ -1,7 +1,7 @@
 package com.senai.rastreadorpet.facade;
 
 import com.senai.rastreadorpet.applications.UserApplication;
-import com.senai.rastreadorpet.entities.UserEntity;
+import com.senai.rastreadorpet.model.UserModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,19 +13,19 @@ public class UserFacade {
 
     private final UserApplication userApplication;
 
-    public UserEntity create(UserEntity entity) {
+    public UserModel create(UserModel entity) {
         return userApplication.create(entity);
     }
 
-    public List<UserEntity> findAll() {
+    public List<UserModel> findAll() {
         return userApplication.findAll();
     }
 
-    public UserEntity findById(int id) {
+    public UserModel findById(int id) {
         return userApplication.findById(id);
     }
 
-    public UserEntity update(int id, UserEntity entity) {
+    public UserModel update(int id, UserModel entity) {
         return userApplication.update(id, entity);
     }
 

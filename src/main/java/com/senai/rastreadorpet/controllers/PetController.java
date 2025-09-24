@@ -1,7 +1,7 @@
 package com.senai.rastreadorpet.controllers;
 
 import com.senai.rastreadorpet.facade.PetFacade;
-import com.senai.rastreadorpet.models.Pet;
+import com.senai.rastreadorpet.entities.Pet;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

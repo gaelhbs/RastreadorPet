@@ -1,6 +1,6 @@
 package com.senai.rastreadorpet.facade;
 
-import com.senai.rastreadorpet.models.Receipt;
+import com.senai.rastreadorpet.entities.Receipt;
 import com.senai.rastreadorpet.applications.ReceiptApplication; // Import atualizado
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

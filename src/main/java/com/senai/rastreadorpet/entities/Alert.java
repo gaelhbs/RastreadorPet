@@ -1,6 +1,6 @@
-package com.senai.rastreadorpet.models;
+package com.senai.rastreadorpet.entities;
 
-import com.senai.rastreadorpet.models.enums.TypeAlertEnum;
+import com.senai.rastreadorpet.entities.enums.TypeAlertEnum;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Table(name = "alerts")
-public class AlertModel {
+public class Alert {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

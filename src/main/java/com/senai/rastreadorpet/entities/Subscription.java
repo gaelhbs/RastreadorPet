@@ -1,6 +1,6 @@
-package com.senai.rastreadorpet.models;
+package com.senai.rastreadorpet.entities;
 
-import com.senai.rastreadorpet.models.enums.SubscriptionStatus;
+import com.senai.rastreadorpet.entities.enums.SubscriptionStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

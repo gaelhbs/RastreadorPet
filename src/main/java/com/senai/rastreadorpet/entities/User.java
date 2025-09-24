@@ -1,6 +1,6 @@
-package com.senai.rastreadorpet.models;
+package com.senai.rastreadorpet.entities;
 
-import com.senai.rastreadorpet.models.enums.CustomerRole;
+import com.senai.rastreadorpet.entities.enums.CustomerRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Entity
 @Table(name = "clientes")
-public class UserModel {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cliente_id")

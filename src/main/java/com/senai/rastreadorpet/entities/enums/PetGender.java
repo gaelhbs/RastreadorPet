@@ -1,4 +1,4 @@
-package com.senai.rastreadorpet.models.enums;
+package com.senai.rastreadorpet.entities.enums;
 
 public enum PetGender {
     MALE,

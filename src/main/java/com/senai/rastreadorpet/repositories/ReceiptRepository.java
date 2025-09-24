@@ -1,6 +1,6 @@
 package com.senai.rastreadorpet.repositories;
 
-import com.senai.rastreadorpet.models.Receipt;
+import com.senai.rastreadorpet.entities.Receipt;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
