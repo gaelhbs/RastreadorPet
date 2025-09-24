@@ -16,7 +16,6 @@ public class PaymentMethod {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "method")
     private String method;
 
     /*
