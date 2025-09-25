@@ -1,7 +1,7 @@
 package com.senai.rastreadorpet.applications;
 
-import com.senai.rastreadorpet.entities.User;
-import com.senai.rastreadorpet.model.UserModel;
+import com.senai.rastreadorpet.entities.UserEntity;
+import com.senai.rastreadorpet.models.UserModel;
 import com.senai.rastreadorpet.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,10 +15,8 @@ public class UserApplication {
 
     private final UserRepository userRepository;
 
-    //TODO: SEPARAR EM CLASSE DE MAPPER
-
     // Converte Entity -> Model
-    private UserModel toModel(User entity) {
+    private UserModel toModel(UserEntity entity) {
         UserModel model = new UserModel();
         model.setId(entity.getId());
         model.setFullName(entity.getFullName());
@@ -39,62 +37,55 @@ public class UserApplication {
         return model;
     }
 
-    //TODO: SEPARAR EM CLASSE DE MAPPER
-
     // Converte Model -> Entity
-    private User toEntity(UserModel userModel) {
-        User entity = new User();
-        entity.setId(userModel.getId());
-        entity.setFullName(userModel.getFullName());
-        entity.setEmail(userModel.getEmail());
-        entity.setPassword(userModel.getPassword());
-        entity.setPhone(userModel.getPhone());
-        entity.setPostalCode(userModel.getPostalCode());
-        entity.setStreet(userModel.getStreet());
-        entity.setNumber(userModel.getNumber());
-        entity.setComplement(userModel.getComplement());
-        entity.setNeighborhood(userModel.getNeighborhood());
-        entity.setCity(userModel.getCity());
-        entity.setState(userModel.getState());
-        entity.setRegistrationDate(userModel.getRegistrationDate());
-        entity.setRole(userModel.getRole());
-        entity.setPrivacyConsentDate(userModel.getPrivacyConsentDate());
-        entity.setPreferences(userModel.getPreferences());
+    private UserEntity toEntity(UserModel model) {
+        UserEntity entity = new UserEntity();
+        entity.setId(model.getId());
+        entity.setFullName(model.getFullName());
+        entity.setEmail(model.getEmail());
+        entity.setPassword(model.getPassword());
+        entity.setPhone(model.getPhone());
+        entity.setPostalCode(model.getPostalCode());
+        entity.setStreet(model.getStreet());
+        entity.setNumber(model.getNumber());
+        entity.setComplement(model.getComplement());
+        entity.setNeighborhood(model.getNeighborhood());
+        entity.setCity(model.getCity());
+        entity.setState(model.getState());
+        entity.setRegistrationDate(model.getRegistrationDate());
+        entity.setRole(model.getRole());
+        entity.setPrivacyConsentDate(model.getPrivacyConsentDate());
+        entity.setPreferences(model.getPreferences());
         return entity;
     }
 
-    // CREATE
-    public UserModel create(UserModel model) {
-        User saved = userRepository.save(toEntity(model));
-        return toModel(saved);
+    public UserEntity create(UserEntity entity) {
+        UserModel saved = userRepository.save(toModel(entity));
+        return toEntity(saved);
     }
 
-    // READ
-    public List<UserModel> findAll() {
+    public List<UserEntity> findAll() {
         return userRepository.findAll()
                 .stream()
-                .map(this::toModel)
+                .map(this::toEntity)
                 .collect(Collectors.toList());
     }
 
-    // READ
-    public UserModel findById(int id) {
+    public UserEntity findById(int id) {
         return userRepository.findById(id)
-                .map(this::toModel)
+                .map(this::toEntity)
                 .orElse(null);
     }
 
-    // UPDATE
-    public UserModel update(int id, UserModel model) {
+    public UserEntity update(int id, UserEntity entity) {
         if (!userRepository.existsById(id)) {
             return null;
         }
-        model.setId(id);
-        User updated = userRepository.save(toEntity(model));
-        return toModel(updated);
+        entity.setId(id);
+        UserModel updated = userRepository.save(toModel(entity));
+        return toEntity(updated);
     }
 
-    // DELETE
     public void delete(int id) {
         userRepository.deleteById(id);
     }

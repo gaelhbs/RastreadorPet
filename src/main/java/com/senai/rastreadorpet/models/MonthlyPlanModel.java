@@ -1,4 +1,4 @@
-package com.senai.rastreadorpet.entities;
+package com.senai.rastreadorpet.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Entity
 @Table(name = "monthly_plan")
-public class MonthlyPlan {
+public class MonthlyPlanModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

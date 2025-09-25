@@ -1,6 +1,6 @@
-package com.senai.rastreadorpet.model;
+package com.senai.rastreadorpet.entities;
 
-import com.senai.rastreadorpet.entities.enums.CustomerRole;
+import com.senai.rastreadorpet.models.enums.CustomerRole;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @RequiredArgsConstructor
 @Setter
-public class UserModel {
+public class UserEntity {
     private int id;
     private String fullName;
     private String email;
