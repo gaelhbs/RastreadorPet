@@ -1,6 +1,6 @@
 package com.senai.rastreadorpet.applications;
 
-import com.senai.rastreadorpet.entities.PaymentMethod;
+import com.senai.rastreadorpet.models.PaymentMethodModel;
 import com.senai.rastreadorpet.repositories.PaymentMethodRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,19 +12,19 @@ public class PaymentMethodApplication {
 
     private final PaymentMethodRepository repository;
 
-    public PaymentMethod searchById(int id){
+    public PaymentMethodModel searchById(int id){
       return this.repository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
     }
 
-    public List<PaymentMethod> listAll(){
+    public List<PaymentMethodModel> listAll(){
         return this.repository.findAll();
     }
 
-    public void add(PaymentMethod entity){
-        this.repository.save(entity);
+    public void add(PaymentMethodModel model){
+        this.repository.save(model);
     }
 
-    public PaymentMethod update(int id, PaymentMethod newData) {
+    public PaymentMethodModel update(int id, PaymentMethodModel newData) {
         return this.repository.findById(id).map(exist -> {
                     exist.setMethod(newData.getMethod());
                     return this.repository.save(exist);
@@ -32,9 +32,9 @@ public class PaymentMethodApplication {
     }
 
     public void delete(int id){
-        PaymentMethod entity = this.repository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
+        PaymentMethodModel model = this.repository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
 
-        this.repository.delete(entity);
+        this.repository.delete(model);
 
 }
 

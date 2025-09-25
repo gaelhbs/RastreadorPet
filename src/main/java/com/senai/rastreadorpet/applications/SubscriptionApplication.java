@@ -1,6 +1,6 @@
 package com.senai.rastreadorpet.applications;
 
-import com.senai.rastreadorpet.entities.Subscription;
+import com.senai.rastreadorpet.models.Subscription;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

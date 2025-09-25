@@ -1,7 +1,7 @@
 package com.senai.rastreadorpet.facade;
 
 import com.senai.rastreadorpet.applications.SubscriptionApplication;
-import com.senai.rastreadorpet.entities.Subscription;
+import com.senai.rastreadorpet.models.Subscription;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

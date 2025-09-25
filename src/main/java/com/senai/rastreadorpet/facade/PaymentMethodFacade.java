@@ -1,7 +1,7 @@
 package com.senai.rastreadorpet.facade;
 
 import com.senai.rastreadorpet.applications.PaymentMethodApplication;
-import com.senai.rastreadorpet.entities.PaymentMethod;
+import com.senai.rastreadorpet.models.PaymentMethodModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import java.util.List;
@@ -12,19 +12,19 @@ public class PaymentMethodFacade {
 
     private final PaymentMethodApplication application;
 
-    public PaymentMethod searchById(int id){
+    public PaymentMethodModel searchById(int id){
         return this.application.searchById(id);
     }
 
-    public List<PaymentMethod> listAll(){
+    public List<PaymentMethodModel> listAll(){
         return this.application.listAll();
     }
 
-    public void add(PaymentMethod entity){
-        this.application.add(entity);
+    public void add(PaymentMethodModel model){
+        this.application.add(model);
     }
 
-    public PaymentMethod update(int id, PaymentMethod newData) {
+    public PaymentMethodModel update(int id, PaymentMethodModel newData) {
         return this.application.update(id, newData);
     }
 

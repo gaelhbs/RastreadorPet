@@ -1,4 +1,4 @@
-package com.senai.rastreadorpet.entities;
+package com.senai.rastreadorpet.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "payment_method")
-public class PaymentMethod {
+public class PaymentMethodModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
