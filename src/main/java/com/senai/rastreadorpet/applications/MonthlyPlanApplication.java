@@ -13,15 +13,15 @@ public class MonthlyPlanApplication {
 
     private final MonthlyPlanRepository repository;
 
-    public MonthlyPlanModel searchById(int id){
+    public MonthlyPlanModel findById(int id){
         return this.repository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
     }
 
-    public List<MonthlyPlanModel> listAll(){
+    public List<MonthlyPlanModel> findAll(){
         return this.repository.findAll();
     }
 
-    public void add(MonthlyPlanModel model){
+    public void create(MonthlyPlanModel model){
         this.repository.save(model);
     }
 

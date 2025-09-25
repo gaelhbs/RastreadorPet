@@ -12,16 +12,16 @@ public class MonthlyPlanFacade {
 
     private final MonthlyPlanApplication application;
 
-    public MonthlyPlanModel searchById(int id){
-        return this.application.searchById(id);
+    public MonthlyPlanModel findById(int id){
+        return this.application.findById(id);
     }
 
     public List<MonthlyPlanModel> listAll(){
-        return this.application.listAll();
+        return this.application.findAll();
     }
 
-    public void add(MonthlyPlanModel model){
-        this.application.add(model);
+    public void create(MonthlyPlanModel model){
+        this.application.create(model);
     }
 
     public MonthlyPlanModel update(int id, MonthlyPlanModel newData) {

@@ -11,15 +11,15 @@ public class SubscriptionFacade {
 
     private final SubscriptionApplication subscriptionApplication;
 
-    public Subscription createNewSubscription(Subscription subscription) {
-        return subscriptionApplication.save(subscription);
+    public Subscription create(Subscription subscription) {
+        return subscriptionApplication.create(subscription);
     }
 
-    public Subscription cancelSubscription(int subscriptionId) {
-        return subscriptionApplication.cancel(subscriptionId);
+    public Subscription findById(int id) {
+        return subscriptionApplication.findById(id);
     }
 
-    public Subscription reactivateSubscription(int subscriptionId) {
-        return subscriptionApplication.reactivate(subscriptionId);
-    }
+   public Subscription update(Subscription subscription) {
+        return subscriptionApplication.update(subscription);
+   }
 }
