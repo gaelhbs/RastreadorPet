@@ -11,8 +11,15 @@ import lombok.*;
 public class GeofenceModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "geofence_id")
     private int id;
+
+    @Column(name = "geofence_name", nullable = false)
     private String name;
+
+    @Column(name = "geofence_area" , nullable = false)
     private float area;
+
+    @Column(name = "geofence_active", nullable = false)
     private boolean active;
 }
