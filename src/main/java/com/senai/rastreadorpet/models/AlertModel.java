@@ -14,8 +14,15 @@ import java.time.LocalDateTime;
 public class AlertModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "alert_id")
     private int id;
+
+    @Column(name = "alert_name", nullable = false)
     private TypeAlertEnum typeAlert;
+
+    @Column(name = "alert_dateTime" , nullable = false)
     private LocalDateTime dateTime;
+
+    @Column(name = "alert_alertRead", nullable = false)
     private Boolean alertRead;
 }
