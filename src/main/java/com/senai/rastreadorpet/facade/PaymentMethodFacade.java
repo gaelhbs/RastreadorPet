@@ -1,34 +1,35 @@
 package com.senai.rastreadorpet.facade;
 
-import com.senai.rastreadorpet.applications.MonthlyPlanApplication;
-import com.senai.rastreadorpet.models.MonthlyPlanModel;
+import com.senai.rastreadorpet.applications.PaymentMethodApplication;
+import com.senai.rastreadorpet.models.PaymentMethodModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class MonthlyPlanFacade {
+public class PaymentMethodFacade {
 
-    private final MonthlyPlanApplication application;
+    private final PaymentMethodApplication application;
 
-    public MonthlyPlanModel searchById(int id){
+    public PaymentMethodModel searchById(int id){
         return this.application.searchById(id);
     }
 
-    public List<MonthlyPlanModel> listAll(){
+    public List<PaymentMethodModel> listAll(){
         return this.application.listAll();
     }
 
-    public void add(MonthlyPlanModel model){
+    public void add(PaymentMethodModel model){
         this.application.add(model);
     }
 
-    public MonthlyPlanModel update(int id, MonthlyPlanModel newData) {
+    public PaymentMethodModel update(int id, PaymentMethodModel newData) {
         return this.application.update(id, newData);
     }
 
     public void delete(int id){
         this.application.delete(id);
     }
+
 }
