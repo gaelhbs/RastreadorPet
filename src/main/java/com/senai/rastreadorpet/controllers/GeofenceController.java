@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/geofences")
+@RequestMapping("/api/geofences")
 @RequiredArgsConstructor
 public class GeofenceController {
 
@@ -18,33 +18,33 @@ public class GeofenceController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<GeofenceEntity> getAllUsers() {
+    public List<GeofenceEntity> getAllGeofences() {
         List<GeofenceEntity> geofences = geofenceFacade.findAll();
         return geofenceFacade.findAll();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public GeofenceEntity createUser(@RequestBody GeofenceEntity geofence) {
+    public GeofenceEntity createGeofence(@RequestBody GeofenceEntity geofence) {
         return geofenceFacade.create(geofence);
 
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public GeofenceEntity getUserById(@PathVariable int id) {
+    public GeofenceEntity getGeofenceById(@PathVariable int id) {
         return geofenceFacade.findById(id);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public GeofenceEntity updateUser(@PathVariable int id, @RequestBody GeofenceEntity geofence) {
+    public GeofenceEntity updateGeofence(@PathVariable int id, @RequestBody GeofenceEntity geofence) {
         return geofenceFacade.update(id, geofence);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteUser(@PathVariable int id) {
+    public void deleteGeofence(@PathVariable int id) {
         geofenceFacade.delete(id);
     }
 }

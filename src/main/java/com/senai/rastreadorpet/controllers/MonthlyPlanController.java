@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/monthly-plans")
+@RequestMapping("/api/monthly-plans")
 @RequiredArgsConstructor
 public class MonthlyPlanController {
 
@@ -23,13 +23,13 @@ public class MonthlyPlanController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public MonthlyPlanModel getPlanById(@PathVariable int id) {
-        return monthlyPlanFacade.searchById(id);
+        return monthlyPlanFacade.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void createPlan(@RequestBody MonthlyPlanModel model) {
-        monthlyPlanFacade.add(model);
+        monthlyPlanFacade.create(model);
     }
 
     @PutMapping("/{id}")

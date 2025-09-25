@@ -13,7 +13,7 @@ public class ReceiptApplication {
     @Autowired
     private ReceiptRepository receiptRepository;
 
-    public Receipt save(Receipt receipt) {
+    public Receipt create(Receipt receipt) {
         // Business rule: Set the receipt date at the moment of processing if not already set.
         if (receipt.getReceiptDate() == null) {
             receipt.setReceiptDate(LocalDateTime.now());
