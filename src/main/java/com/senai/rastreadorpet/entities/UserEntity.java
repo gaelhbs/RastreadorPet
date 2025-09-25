@@ -1,15 +1,15 @@
 package com.senai.rastreadorpet.entities;
 
 import com.senai.rastreadorpet.models.enums.CustomerRole;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@Getter
-@RequiredArgsConstructor
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserEntity {
     private int id;
     private String fullName;
