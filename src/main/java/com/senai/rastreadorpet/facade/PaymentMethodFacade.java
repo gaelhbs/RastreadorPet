@@ -12,16 +12,16 @@ public class PaymentMethodFacade {
 
     private final PaymentMethodApplication application;
 
-    public PaymentMethodModel searchById(int id){
-        return this.application.searchById(id);
+    public PaymentMethodModel findById(int id){
+        return this.application.findById(id);
     }
 
-    public List<PaymentMethodModel> listAll(){
-        return this.application.listAll();
+    public List<PaymentMethodModel> findAll(){
+        return this.application.findAll();
     }
 
-    public void add(PaymentMethodModel model){
-        this.application.add(model);
+    public void create(PaymentMethodModel model){
+        this.application.create(model);
     }
 
     public PaymentMethodModel update(int id, PaymentMethodModel newData) {

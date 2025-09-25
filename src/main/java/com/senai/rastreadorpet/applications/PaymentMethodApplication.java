@@ -12,15 +12,15 @@ public class PaymentMethodApplication {
 
     private final PaymentMethodRepository repository;
 
-    public PaymentMethodModel searchById(int id){
+    public PaymentMethodModel findById(int id){
       return this.repository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
     }
 
-    public List<PaymentMethodModel> listAll(){
+    public List<PaymentMethodModel> findAll(){
         return this.repository.findAll();
     }
 
-    public void add(PaymentMethodModel model){
+    public void create(PaymentMethodModel model){
         this.repository.save(model);
     }
 

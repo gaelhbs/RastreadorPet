@@ -1,7 +1,7 @@
 package com.senai.rastreadorpet.applications;
 
 import com.senai.rastreadorpet.entities.PetEntity;
-import com.senai.rastreadorpet.models.Pet;
+import com.senai.rastreadorpet.models.PetModel;
 import com.senai.rastreadorpet.repositories.PetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,8 +16,8 @@ public class PetApplication {
     private final PetRepository petRepository;
 
     // Converte Entity -> Model
-    private Pet toModel(PetEntity entity) {
-        Pet model = new Pet();
+    private PetModel toModel(PetEntity entity) {
+        PetModel model = new PetModel();
         model.setId(entity.getId());
         model.setName(entity.getName());
         model.setSpecies(entity.getSpecies());
@@ -29,7 +29,7 @@ public class PetApplication {
     }
 
     // Converte Model -> Entity
-    private PetEntity toEntity(Pet model) {
+    private PetEntity toEntity(PetModel model) {
         PetEntity entity = new PetEntity();
         entity.setId(model.getId());
         entity.setName(model.getName());
@@ -42,7 +42,7 @@ public class PetApplication {
     }
 
     public PetEntity create(PetEntity entity) {
-        Pet saved = petRepository.save(toModel(entity));
+        PetModel saved = petRepository.save(toModel(entity));
         return toEntity(saved);
     }
 
@@ -64,7 +64,7 @@ public class PetApplication {
             return null;
         }
         entity.setId(id);
-        Pet updated = petRepository.save(toModel(entity));
+        PetModel updated = petRepository.save(toModel(entity));
         return toEntity(updated);
     }
 

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/alerts")
+@RequestMapping("/api/alerts")
 @RequiredArgsConstructor
 public class AlertController {
 
@@ -24,26 +24,26 @@ public class AlertController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public AlertEntity createUser(@RequestBody AlertEntity alert) {
+    public AlertEntity createAlerts(@RequestBody AlertEntity alert) {
         return alertFacade.create(alert);
 
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public AlertEntity getUserById(@PathVariable int id) {
+    public AlertEntity getAlertById(@PathVariable int id) {
         return alertFacade.findById(id);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public AlertEntity updateUser(@PathVariable int id, @RequestBody AlertEntity alert) {
+    public AlertEntity updateAlert(@PathVariable int id, @RequestBody AlertEntity alert) {
         return alertFacade.update(id, alert);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteUser(@PathVariable int id) {
+    public void deleteAlert(@PathVariable int id) {
         alertFacade.delete(id);
     }
 }

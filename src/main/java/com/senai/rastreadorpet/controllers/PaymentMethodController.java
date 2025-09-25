@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/payment-methods")
+@RequestMapping("/api/payment-methods")
 @RequiredArgsConstructor
 public class PaymentMethodController {
 
@@ -18,19 +18,19 @@ public class PaymentMethodController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<PaymentMethodModel> getAllPaymentMethods() {
-        return paymentMethodFacade.listAll();
+        return paymentMethodFacade.findAll();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public PaymentMethodModel getPaymentMethodById(@PathVariable int id) {
-        return paymentMethodFacade.searchById(id);
+        return paymentMethodFacade.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void createPaymentMethod(@RequestBody PaymentMethodModel model) {
-        paymentMethodFacade.add(model);
+        paymentMethodFacade.create(model);
     }
 
     @PutMapping("/{id}")
