@@ -17,32 +17,32 @@ public class DeviceController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<DeviceEntity> getAllDevice() {
-        List<DeviceEntity> pets = deviceFacade.findAll();
+        List<DeviceEntity> Device = deviceFacade.findAll();
         return deviceFacade.findAll();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public DeviceEntity createUser(@RequestBody DeviceEntity device) {
+    public DeviceEntity createDevice(@RequestBody DeviceEntity device) {
         return deviceFacade.create(device);
 
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public DeviceEntity getUserById(@PathVariable int id) {
+    public DeviceEntity getDeviceById(@PathVariable int id) {
         return deviceFacade.findById(id);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public DeviceEntity updateUser(@PathVariable int id, @RequestBody DeviceEntity device) {
+    public DeviceEntity updateDevice(@PathVariable int id, @RequestBody DeviceEntity device) {
         return deviceFacade.update(id, device);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteUser(@PathVariable int id) {
+    public void deleteDevice(@PathVariable int id) {
         deviceFacade.delete(id);
     }
 }
