@@ -1,6 +1,7 @@
 package com.senai.rastreadorpet.applications;
 
 import com.senai.rastreadorpet.entities.LocationEntity;
+import com.senai.rastreadorpet.models.DeviceModel;
 import com.senai.rastreadorpet.models.LocationModel;
 import com.senai.rastreadorpet.repositories.LocationRepository;
 import lombok.RequiredArgsConstructor;
