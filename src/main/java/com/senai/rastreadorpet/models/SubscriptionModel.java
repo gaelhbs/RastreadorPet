@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Entity
 @Table(name = "assinaturas")
-public class Subscription {
+public class SubscriptionModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
