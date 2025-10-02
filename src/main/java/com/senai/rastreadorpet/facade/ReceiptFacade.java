@@ -12,6 +12,6 @@ public class ReceiptFacade {
     private ReceiptApplication receiptApplication; 
 
     public Receipt registerNewReceipt(Receipt receipt) {
-        return receiptApplication.save(receipt); 
+        return receiptApplication.create(receipt);
     }
 }
