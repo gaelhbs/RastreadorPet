@@ -1,23 +1,71 @@
 package com.senai.rastreadorpet.applications;
 
-import com.senai.rastreadorpet.models.Receipt;
+import com.senai.rastreadorpet.entities.AlertEntity;
+import com.senai.rastreadorpet.entities.Receipt;
+import com.senai.rastreadorpet.models.AlertModel;
+import com.senai.rastreadorpet.models.ReceiptModel;
 import com.senai.rastreadorpet.repositories.ReceiptRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
-@Service // A anotação @Service ainda é usada, pois indica ao Spring que é um componente da camada de serviço/aplicação
+@Service
+@RequiredArgsConstructor
 public class ReceiptApplication {
 
-    @Autowired
-    private ReceiptRepository receiptRepository;
+    private final ReceiptRepository receiptRepository;
 
-    public Receipt create(Receipt receipt) {
-        // Business rule: Set the receipt date at the moment of processing if not already set.
-        if (receipt.getReceiptDate() == null) {
-            receipt.setReceiptDate(LocalDateTime.now());
-        }
-        return receiptRepository.save(receipt);
+    // Converte Entity -> Model
+    private ReceiptModel toModel(Receipt entity) {
+        ReceiptModel model = new ReceiptModel();
+        model.setId(entity.getId());
+        model.setStatus(entity.getStatus());
+        model.setPaymentDate(entity.getPaymentDate());
+        model.setValuePaid(entity.getValuePaid());
+        return model;
     }
+
+    // Converte Model -> Entity
+    private Receipt toEntity(ReceiptModel model) {
+        Receipt entity = new Receipt();
+        entity.setId(model.getId());
+        entity.setStatus(model.getStatus());
+        entity.setPaymentDate(model.getPaymentDate());
+        entity.setValuePaid(model.getValuePaid());
+        return entity;
+    }
+
+    public Receipt create(Receipt entity) {
+        ReceiptModel saved = receiptRepository.save(toModel(entity));
+        return toEntity(saved);
+    }
+
+    public List<Receipt> findAll() {
+        return receiptRepository.findAll()
+                .stream()
+                .map(this::toEntity)
+                .collect(Collectors.toList());
+    }
+
+    public Receipt findById(int id) {
+        return receiptRepository.findById(id)
+                .map(this::toEntity)
+                .orElse(null);
+    }
+
+    public Receipt update(int id, Receipt entity) {
+        if (!receiptRepository.existsById(id)) {
+            return null;
+        }
+        entity.setId(id);
+        ReceiptModel updated = receiptRepository.save(toModel(entity));
+        return toEntity(updated);
+    }
+
+    public void delete(int id) {
+        receiptRepository.deleteById(id);
+    }
+
 }
