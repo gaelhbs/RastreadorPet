@@ -14,8 +14,10 @@ public class PaymentMethodModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "payment_method_id")
     private int id;
 
+    @Column(name = "payment_method_name", nullable = false)
     private String method;
 
     /*

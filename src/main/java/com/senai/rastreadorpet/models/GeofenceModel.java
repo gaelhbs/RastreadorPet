@@ -1,7 +1,9 @@
 package com.senai.rastreadorpet.models;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
@@ -17,7 +19,7 @@ public class GeofenceModel {
     @Column(name = "geofence_name", nullable = false)
     private String name;
 
-    @Column(name = "geofence_area" , nullable = false)
+    @Column(name = "geofence_area", nullable = false)
     private float area;
 
     @Column(name = "geofence_active", nullable = false)

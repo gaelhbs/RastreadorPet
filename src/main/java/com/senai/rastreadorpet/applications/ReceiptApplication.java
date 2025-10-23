@@ -1,8 +1,6 @@
 package com.senai.rastreadorpet.applications;
 
-import com.senai.rastreadorpet.entities.AlertEntity;
 import com.senai.rastreadorpet.entities.Receipt;
-import com.senai.rastreadorpet.models.AlertModel;
 import com.senai.rastreadorpet.models.ReceiptModel;
 import com.senai.rastreadorpet.repositories.ReceiptRepository;
 import lombok.RequiredArgsConstructor;

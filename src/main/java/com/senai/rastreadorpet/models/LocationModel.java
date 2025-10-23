@@ -17,18 +17,19 @@ public class LocationModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "location_id")
     private Integer id;
 
-    @Column(nullable = false, precision = 10, scale = 7)
+    @Column(name = "location_latitude", nullable = false, precision = 10, scale = 7)
     private BigDecimal latitude;
 
-    @Column(nullable = false, precision = 10, scale = 7)
+    @Column(name = "location_longitude", nullable = false, precision = 10, scale = 7)
     private BigDecimal longitude;
 
-    @Column(nullable = false)
+    @Column(name = "location_date_time", nullable = false)
     private LocalDateTime dateTime;
 
-    @Column(precision = 5, scale = 2)
+    @Column(name = "location_battery_level", precision = 5, scale = 2)
     private BigDecimal batteryLevel;
 
 }

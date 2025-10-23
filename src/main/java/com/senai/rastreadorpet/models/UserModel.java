@@ -12,57 +12,57 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "clientes")
+@Table(name = "customers")
 public class UserModel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cliente_id")
+    @Column(name = "customer_id")
     private int id;
 
-    @Column(name = "cliente_nome_completo", nullable = false)
+    @Column(name = "customer_full_name", nullable = false)
     private String fullName;
 
-    @Column(name = "cliente_email", unique = true, nullable = false)
+    @Column(name = "customer_email", unique = true, nullable = false)
     private String email;
 
-    @Column(name = "cliente_senha", nullable = false)
+    @Column(name = "customer_password", nullable = false)
     private String password;
 
-    @Column(name = "cliente_telefone")
+    @Column(name = "customer_phone")
     private String phone;
 
-    @Column(name = "cliente_cep")
+    @Column(name = "customer_postal_code")
     private String postalCode;
 
-    @Column(name = "cliente_rua")
+    @Column(name = "customer_street")
     private String street;
 
-    @Column(name = "cliente_numero")
+    @Column(name = "customer_number")
     private String number;
 
-    @Column(name = "cliente_complemento")
+    @Column(name = "customer_complement")
     private String complement;
 
-    @Column(name = "cliente_bairro")
+    @Column(name = "customer_neighborhood")
     private String neighborhood;
 
-    @Column(name = "cliente_cidade")
+    @Column(name = "customer_city")
     private String city;
 
-    @Column(name = "cliente_estado")
+    @Column(name = "customer_state")
     private String state;
 
-    @Column(name = "cliente_data_cadastro")
+    @Column(name = "customer_registration_date")
     private LocalDateTime registrationDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "cliente_role", nullable = false)
+    @Column(name = "customer_role", nullable = false)
     private CustomerRole role;
 
-    @Column(name = "cliente_data_consentimento_privacidade")
+    @Column(name = "customer_privacy_consent_date")
     private LocalDateTime privacyConsentDate;
 
-    @Column(name = "cliente_preferencias", columnDefinition = "json")
+    @Column(name = "customer_preferences", columnDefinition = "json")
     private String preferences;
-
 }

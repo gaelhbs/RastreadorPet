@@ -12,21 +12,21 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "assinaturas")
+@Table(name = "subscriptions")
 public class SubscriptionModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "assinatura_id")
+    @Column(name = "subscription_id")
     private int id;
 
-    @Column(name = "assinatura_data_inicio", nullable = false)
+    @Column(name = "subscription_start_date", nullable = false)
     private LocalDate startDate;
 
-    @Column(name = "assinatura_data_fim")
+    @Column(name = "subscription_end_date")
     private LocalDate endDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "assinatura_status", nullable = false)
+    @Column(name = "subscription_status", nullable = false)
     private SubscriptionStatus status;
 }

@@ -2,7 +2,9 @@ package com.senai.rastreadorpet.models;
 
 import com.senai.rastreadorpet.models.enums.TypeAlertEnum;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -20,7 +22,7 @@ public class AlertModel {
     @Column(name = "alert_name", nullable = false)
     private TypeAlertEnum typeAlert;
 
-    @Column(name = "alert_dateTime" , nullable = false)
+    @Column(name = "alert_dateTime", nullable = false)
     private LocalDateTime dateTime;
 
     @Column(name = "alert_alertRead", nullable = false)

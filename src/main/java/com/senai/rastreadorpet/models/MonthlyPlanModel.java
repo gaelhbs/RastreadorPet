@@ -16,14 +16,16 @@ public class MonthlyPlanModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "monthly_plan_id")
     private int id;
 
-    @Column(unique = true, nullable = false)
+    @Column(name = "monthly_plan_name", unique = true, nullable = false)
     private String name;
 
+    @Column(name = "monthly_plan_description")
     private String description;
 
-    @Column(nullable = false)
+    @Column(name = "monthly_plan_price", nullable = false)
     private BigDecimal price;
 
      /*
