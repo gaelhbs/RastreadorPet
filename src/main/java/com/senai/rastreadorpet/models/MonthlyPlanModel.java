@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -16,7 +18,7 @@ public class MonthlyPlanModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "monthly_plan_id")
+    @Column(name = "id")
     private int id;
 
     @Column(name = "monthly_plan_name", unique = true, nullable = false)
@@ -28,8 +30,6 @@ public class MonthlyPlanModel {
     @Column(name = "monthly_plan_price", nullable = false)
     private BigDecimal price;
 
-     /*
-    @OneToMany(mappedBy = "monthlyPlan")
+    @OneToMany(mappedBy = "monthlyPlan", cascade = CascadeType.ALL)
     private List<SubscriptionModel> subscriptions = new ArrayList<>();
-    */
 }

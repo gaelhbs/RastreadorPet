@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class GeofenceModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "geofence_id")
+    @Column(name = "id")
     private int id;
 
     @Column(name = "geofence_name", nullable = false)
@@ -24,4 +24,11 @@ public class GeofenceModel {
 
     @Column(name = "geofence_active", nullable = false)
     private boolean active;
+
+    @Column(name = "user_id")
+    private int UserId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private UserModel user;
 }

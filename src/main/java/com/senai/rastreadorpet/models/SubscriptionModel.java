@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -17,7 +19,7 @@ public class SubscriptionModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "subscription_id")
+    @Column(name = "id")
     private int id;
 
     @Column(name = "subscription_start_date", nullable = false)
@@ -29,4 +31,23 @@ public class SubscriptionModel {
     @Enumerated(EnumType.STRING)
     @Column(name = "subscription_status", nullable = false)
     private SubscriptionStatus status;
+
+    // A fk vai ser crida nessa tabela(subscriptions) apontando para a tabela users
+    @Column(name = "user_id")
+    private int UserId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private UserModel user;
+
+    // A fk vai ser crida nessa tabela(subscriptions) apontando para a tabela monthly_plan
+    @Column(name = "monthly_plan_id")
+    private int monthlyPlanId;
+
+    @ManyToOne
+    @JoinColumn(name = "monthly_plan_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private MonthlyPlanModel monthlyPlan;
+
+    @OneToMany(mappedBy = "subscription", cascade = CascadeType.ALL)
+    private List<ReceiptModel> receipt = new ArrayList<>();
 }

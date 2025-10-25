@@ -17,7 +17,7 @@ public class LocationModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "location_id")
+    @Column(name = "id")
     private Integer id;
 
     @Column(name = "location_latitude", nullable = false, precision = 10, scale = 7)
