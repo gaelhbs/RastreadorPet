@@ -16,7 +16,7 @@ public class DeviceModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "device_id")
+    @Column(name = "id")
     public Integer id;
 
     @Column(name = "device_code_identifier", nullable = false, length = 100, unique = true)

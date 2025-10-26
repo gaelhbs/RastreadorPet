@@ -1,6 +1,6 @@
 package com.senai.rastreadorpet.models.enums;
 
-public enum CustomerRole {
+public enum UserRole {
     USER,
     ADMIN
 }
