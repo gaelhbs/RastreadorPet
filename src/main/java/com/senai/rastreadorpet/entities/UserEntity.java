@@ -1,6 +1,6 @@
 package com.senai.rastreadorpet.entities;
 
-import com.senai.rastreadorpet.models.enums.CustomerRole;
+import com.senai.rastreadorpet.models.enums.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +24,7 @@ public class UserEntity {
     private String city;
     private String state;
     private LocalDateTime registrationDate;
-    private CustomerRole role;
+    private UserRole role;
     private LocalDateTime privacyConsentDate;
     private String preferences;
 }

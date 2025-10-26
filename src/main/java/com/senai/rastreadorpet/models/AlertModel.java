@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class AlertModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "alert_id")
+    @Column(name = "id")
     private int id;
 
     @Column(name = "alert_name", nullable = false)
@@ -27,4 +27,11 @@ public class AlertModel {
 
     @Column(name = "alert_alertRead", nullable = false)
     private Boolean alertRead;
+
+    @Column(name = "pet_id")
+    private int petId;
+
+    @ManyToOne
+    @JoinColumn(name = "pet_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private PetModel pet;
 }
