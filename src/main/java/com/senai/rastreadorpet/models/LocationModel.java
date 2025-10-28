@@ -32,4 +32,13 @@ public class LocationModel {
     @Column(name = "location_battery_level", precision = 5, scale = 2)
     private BigDecimal batteryLevel;
 
+    @Column(name = "device_id")
+    private String deviceId;
+
+    @ManyToOne
+    @JoinColumn(name = "device_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private DeviceModel device;
+
+
+
 }

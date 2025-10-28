@@ -31,7 +31,15 @@ public class AlertModel {
     @Column(name = "pet_id")
     private int petId;
 
+    @Column(name = "geofence_id")
+    private int geofence_id;
+
     @ManyToOne
     @JoinColumn(name = "pet_id", referencedColumnName = "id", insertable = false, updatable = false)
     private PetModel pet;
+
+    @ManyToOne
+    @JoinColumn(name = "geofence_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private GeofenceModel geofence;
+
 }

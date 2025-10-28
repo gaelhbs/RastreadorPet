@@ -1,6 +1,6 @@
 package com.senai.rastreadorpet.applications;
 
-import com.senai.rastreadorpet.entities.AlertEntity;
+import com.senai.rastreadorpet.entities.Alert;
 import com.senai.rastreadorpet.models.AlertModel;
 import com.senai.rastreadorpet.repositories.AlertRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class AlertApplication {
     private final AlertRepository alertRepository;
 
     // Converte Entity -> Model
-    private AlertModel toModel(AlertEntity entity) {
+    private AlertModel toModel(Alert entity) {
         AlertModel model = new AlertModel();
         model.setId(entity.getId());
         model.setAlertRead(entity.getAlertRead());
@@ -26,8 +26,8 @@ public class AlertApplication {
     }
 
     // Converte Model -> Entity
-    private AlertEntity toEntity(AlertModel model) {
-        AlertEntity entity = new AlertEntity();
+    private Alert toEntity(AlertModel model) {
+        Alert entity = new Alert();
         entity.setId(model.getId());
         entity.setAlertRead(model.getAlertRead());
         entity.setDateTime(model.getDateTime());
@@ -35,25 +35,25 @@ public class AlertApplication {
         return entity;
     }
 
-    public AlertEntity create(AlertEntity entity) {
+    public Alert create(Alert entity) {
         AlertModel saved = alertRepository.save(toModel(entity));
         return toEntity(saved);
     }
 
-    public List<AlertEntity> findAll() {
+    public List<Alert> findAll() {
         return alertRepository.findAll()
                 .stream()
                 .map(this::toEntity)
                 .collect(Collectors.toList());
     }
 
-    public AlertEntity findById(int id) {
+    public Alert findById(int id) {
         return alertRepository.findById(id)
                 .map(this::toEntity)
                 .orElse(null);
     }
 
-    public AlertEntity update(int id, AlertEntity entity) {
+    public Alert update(int id, Alert entity) {
         if (!alertRepository.existsById(id)) {
             return null;
         }

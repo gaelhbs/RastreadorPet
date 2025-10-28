@@ -24,5 +24,5 @@ public class PaymentMethodModel {
     private String method;
 
     @OneToMany(mappedBy = "paymentMethod", cascade = CascadeType.ALL)
-    private List<ReceiptModel> receipt = new ArrayList<>();
+    private List<ReceiptModel> receipts = new ArrayList<>();
 }

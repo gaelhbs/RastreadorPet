@@ -1,5 +1,6 @@
 package com.senai.rastreadorpet.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,5 +32,6 @@ public class MonthlyPlanModel {
     private BigDecimal price;
 
     @OneToMany(mappedBy = "monthlyPlan", cascade = CascadeType.ALL)
+    @JsonIdentityReference
     private List<SubscriptionModel> subscriptions = new ArrayList<>();
 }

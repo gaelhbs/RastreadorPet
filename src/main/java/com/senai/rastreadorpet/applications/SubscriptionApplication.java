@@ -22,6 +22,7 @@ public class SubscriptionApplication {
         model.setStartDate(entity.getStartDate());
         model.setEndDate(entity.getEndDate());
         model.setStatus(entity.getStatus());
+        model.setReceipt(entity.getReceipt());
         return model;
     }
 
@@ -32,6 +33,7 @@ public class SubscriptionApplication {
         entity.setStartDate(model.getStartDate());
         entity.setEndDate(model.getEndDate());
         entity.setStatus(model.getStatus());
+        entity.setReceipt(model.getReceipt());
         return entity;
     }
 

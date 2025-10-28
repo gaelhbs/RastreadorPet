@@ -1,6 +1,6 @@
 package com.senai.rastreadorpet.controllers;
 
-import com.senai.rastreadorpet.entities.LocationEntity;
+import com.senai.rastreadorpet.entities.Location;
 import com.senai.rastreadorpet.facade.LocationFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,27 +16,27 @@ public class LocationController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<LocationEntity> getAllLocation() {
-        List<LocationEntity> location = locationFacade.findAll();
+    public List<Location> getAllLocation() {
+        List<Location> location = locationFacade.findAll();
         return locationFacade.findAll();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public LocationEntity createLocation(@RequestBody LocationEntity location) {
+    public Location createLocation(@RequestBody Location location) {
         return locationFacade.create(location);
 
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public LocationEntity getLocationById(@PathVariable int id) {
+    public Location getLocationById(@PathVariable int id) {
         return locationFacade.findById(id);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public LocationEntity updateLocationEntity(@PathVariable int id, @RequestBody LocationEntity location) {
+    public Location updateLocationEntity(@PathVariable int id, @RequestBody Location location) {
         return locationFacade.update(id, location);
     }
 

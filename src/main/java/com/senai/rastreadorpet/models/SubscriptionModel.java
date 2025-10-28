@@ -1,5 +1,6 @@
 package com.senai.rastreadorpet.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.senai.rastreadorpet.models.enums.SubscriptionStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -37,6 +38,7 @@ public class SubscriptionModel {
     private int UserId;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private UserModel user;
 
@@ -45,6 +47,7 @@ public class SubscriptionModel {
     private int monthlyPlanId;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "monthly_plan_id", referencedColumnName = "id", insertable = false, updatable = false)
     private MonthlyPlanModel monthlyPlan;
 

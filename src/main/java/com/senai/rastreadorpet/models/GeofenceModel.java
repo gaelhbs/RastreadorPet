@@ -1,9 +1,13 @@
 package com.senai.rastreadorpet.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -29,6 +33,11 @@ public class GeofenceModel {
     private int UserId;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private UserModel user;
+
+
+    @OneToMany(mappedBy = "geofence", cascade = CascadeType.ALL)
+    private List<AlertModel> alerts = new ArrayList<>();
 }

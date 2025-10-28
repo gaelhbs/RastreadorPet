@@ -1,8 +1,7 @@
 package com.senai.rastreadorpet.facade;
 
-import com.senai.rastreadorpet.entities.DeviceEntity;
+import com.senai.rastreadorpet.entities.Device;
 import com.senai.rastreadorpet.applications.DeviceApplication;
-import com.senai.rastreadorpet.repositories.DeviceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,19 +12,19 @@ import java.util.List;
 public class DeviceFacade {
     private final DeviceApplication deviceApplication;
 
-    public DeviceEntity create(DeviceEntity device) {
+    public Device create(Device device) {
         return deviceApplication.create(device);
     }
 
-    public List<DeviceEntity> findAll() {
+    public List<Device> findAll() {
         return deviceApplication.findAll();
     }
 
-    public DeviceEntity findById(int id) {
+    public Device findById(int id) {
         return deviceApplication.findById(id);
     }
 
-    public DeviceEntity update(int id, DeviceEntity entity) {
+    public Device update(int id, Device entity) {
         return deviceApplication.update(id, entity);
     }
 

@@ -1,7 +1,7 @@
 package com.senai.rastreadorpet.facade;
 
 import com.senai.rastreadorpet.applications.PetApplication;
-import com.senai.rastreadorpet.entities.PetEntity;
+import com.senai.rastreadorpet.entities.Pet;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,19 +13,19 @@ public class PetFacade {
 
     private final PetApplication petApplication;
 
-    public PetEntity create(PetEntity pet) {
+    public Pet create(Pet pet) {
         return petApplication.create(pet);
     }
 
-    public List<PetEntity> findAll() {
+    public List<Pet> findAll() {
         return petApplication.findAll();
     }
 
-    public PetEntity findById(int id) {
+    public Pet findById(int id) {
         return petApplication.findById(id);
     }
 
-    public PetEntity update(int id, PetEntity entity) {
+    public Pet update(int id, Pet entity) {
         return petApplication.update(id, entity);
     }
 
