@@ -1,5 +1,7 @@
 package com.senai.rastreadorpet.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.senai.rastreadorpet.models.enums.SubscriptionStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,6 +15,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
 @Table(name = "subscriptions")
 public class SubscriptionModel {
@@ -32,15 +35,13 @@ public class SubscriptionModel {
     @Column(name = "subscription_status", nullable = false)
     private SubscriptionStatus status;
 
-    // A fk vai ser crida nessa tabela(subscriptions) apontando para a tabela users
     @Column(name = "user_id")
-    private int UserId;
+    private int userId;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private UserModel user;
 
-    // A fk vai ser crida nessa tabela(subscriptions) apontando para a tabela monthly_plan
     @Column(name = "monthly_plan_id")
     private int monthlyPlanId;
 

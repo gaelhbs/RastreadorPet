@@ -1,6 +1,6 @@
 package com.senai.rastreadorpet.applications;
 
-import com.senai.rastreadorpet.entities.UserEntity;
+import com.senai.rastreadorpet.entities.User;
 import com.senai.rastreadorpet.models.UserModel;
 import com.senai.rastreadorpet.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class UserApplication {
     private final UserRepository userRepository;
 
     // Converte Entity -> Model
-    private UserModel toModel(UserEntity entity) {
+    private UserModel toModel(User entity) {
         UserModel model = new UserModel();
         model.setId(entity.getId());
         model.setFullName(entity.getFullName());
@@ -34,12 +34,16 @@ public class UserApplication {
         model.setRole(entity.getRole());
         model.setPrivacyConsentDate(entity.getPrivacyConsentDate());
         model.setPreferences(entity.getPreferences());
+        model.setPets(entity.getPets());
+        model.setSubscriptions(entity.getSubscriptions());
+        model.setReceipts(entity.getReceipts());
+        model.setGeofences(entity.getGeofences());
         return model;
     }
 
     // Converte Model -> Entity
-    private UserEntity toEntity(UserModel model) {
-        UserEntity entity = new UserEntity();
+    private User toEntity(UserModel model) {
+        User entity = new User();
         entity.setId(model.getId());
         entity.setFullName(model.getFullName());
         entity.setEmail(model.getEmail());
@@ -56,28 +60,32 @@ public class UserApplication {
         entity.setRole(model.getRole());
         entity.setPrivacyConsentDate(model.getPrivacyConsentDate());
         entity.setPreferences(model.getPreferences());
+        entity.setPets(model.getPets());
+        entity.setSubscriptions(model.getSubscriptions());
+        entity.setReceipts(model.getReceipts());
+        entity.setGeofences(model.getGeofences());
         return entity;
     }
 
-    public UserEntity create(UserEntity entity) {
+    public User create(User entity) {
         UserModel saved = userRepository.save(toModel(entity));
         return toEntity(saved);
     }
 
-    public List<UserEntity> findAll() {
+    public List<User> findAll() {
         return userRepository.findAll()
                 .stream()
                 .map(this::toEntity)
                 .collect(Collectors.toList());
     }
 
-    public UserEntity findById(int id) {
+    public User findById(int id) {
         return userRepository.findById(id)
                 .map(this::toEntity)
                 .orElse(null);
     }
 
-    public UserEntity update(int id, UserEntity entity) {
+    public User update(int id, User entity) {
         if (!userRepository.existsById(id)) {
             return null;
         }

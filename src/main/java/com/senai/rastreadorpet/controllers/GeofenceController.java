@@ -1,7 +1,7 @@
 
 package com.senai.rastreadorpet.controllers;
 
-import com.senai.rastreadorpet.entities.GeofenceEntity;
+import com.senai.rastreadorpet.entities.Geofence;
 import com.senai.rastreadorpet.facade.GeofenceFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,27 +18,27 @@ public class GeofenceController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<GeofenceEntity> getAllGeofences() {
-        List<GeofenceEntity> geofences = geofenceFacade.findAll();
+    public List<Geofence> getAllGeofences() {
+        List<Geofence> geofences = geofenceFacade.findAll();
         return geofenceFacade.findAll();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public GeofenceEntity createGeofence(@RequestBody GeofenceEntity geofence) {
+    public Geofence createGeofence(@RequestBody Geofence geofence) {
         return geofenceFacade.create(geofence);
 
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public GeofenceEntity getGeofenceById(@PathVariable int id) {
+    public Geofence getGeofenceById(@PathVariable int id) {
         return geofenceFacade.findById(id);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public GeofenceEntity updateGeofence(@PathVariable int id, @RequestBody GeofenceEntity geofence) {
+    public Geofence updateGeofence(@PathVariable int id, @RequestBody Geofence geofence) {
         return geofenceFacade.update(id, geofence);
     }
 

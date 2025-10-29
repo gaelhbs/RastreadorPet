@@ -22,6 +22,9 @@ public class SubscriptionApplication {
         model.setStartDate(entity.getStartDate());
         model.setEndDate(entity.getEndDate());
         model.setStatus(entity.getStatus());
+        model.setUserId(entity.getUserId());
+        model.setMonthlyPlanId(entity.getMonthlyPlanId());
+        model.setReceipt(entity.getReceipt());
         return model;
     }
 
@@ -32,6 +35,9 @@ public class SubscriptionApplication {
         entity.setStartDate(model.getStartDate());
         entity.setEndDate(model.getEndDate());
         entity.setStatus(model.getStatus());
+        entity.setUserId(model.getUserId());
+        entity.setMonthlyPlanId(model.getMonthlyPlanId());
+        entity.setReceipt(model.getReceipt());
         return entity;
     }
 

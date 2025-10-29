@@ -1,6 +1,7 @@
 package com.senai.rastreadorpet.applications;
 
 
+import com.senai.rastreadorpet.entities.MonthlyPlan;
 import com.senai.rastreadorpet.models.MonthlyPlanModel;
 import com.senai.rastreadorpet.repositories.MonthlyPlanRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,31 @@ import java.util.List;
 public class MonthlyPlanApplication {
 
     private final MonthlyPlanRepository repository;
+
+    private MonthlyPlanModel toModel(MonthlyPlan entity) {
+        MonthlyPlanModel model = new MonthlyPlanModel();
+
+        model.setId(entity.getId());
+        model.setName(entity.getName());
+        model.setDescription(entity.getDescription());
+        model.setPrice(entity.getPrice());
+        model.setSubscriptions(entity.getSubscriptions());
+
+        return model;
+    }
+
+    private MonthlyPlan toEntity(MonthlyPlanModel model) {
+        MonthlyPlan entity = new MonthlyPlan();
+
+        entity.setId(model.getId());
+        entity.setName(model.getName());
+        entity.setDescription(model.getDescription());
+        entity.setPrice(model.getPrice());
+        entity.setSubscriptions(model.getSubscriptions());
+
+        return entity;
+    }
+
 
     public MonthlyPlanModel findById(int id){
         return this.repository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));

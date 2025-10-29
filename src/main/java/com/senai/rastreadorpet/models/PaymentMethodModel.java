@@ -1,5 +1,7 @@
 package com.senai.rastreadorpet.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,8 +13,9 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
-@Table(name = "payment_method")
+@Table(name = "payment_methods")
 public class PaymentMethodModel {
 
     @Id
@@ -20,7 +23,7 @@ public class PaymentMethodModel {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "payment_method_name", nullable = false)
+    @Column(name = "method_name", nullable = false)
     private String method;
 
     @OneToMany(mappedBy = "paymentMethod", cascade = CascadeType.ALL)
