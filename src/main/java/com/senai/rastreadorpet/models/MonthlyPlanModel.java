@@ -1,5 +1,7 @@
 package com.senai.rastreadorpet.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,8 +14,9 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
-@Table(name = "monthly_plan")
+@Table(name = "monthly_plans")
 public class MonthlyPlanModel {
 
     @Id

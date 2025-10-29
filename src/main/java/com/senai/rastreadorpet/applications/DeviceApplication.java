@@ -1,6 +1,6 @@
 package com.senai.rastreadorpet.applications;
 
-import com.senai.rastreadorpet.entities.DeviceEntity;
+import com.senai.rastreadorpet.entities.Device;
 import com.senai.rastreadorpet.models.DeviceModel;
 import com.senai.rastreadorpet.repositories.DeviceRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ public class DeviceApplication {
     private final DeviceRepository deviceRepository;
 
     // Converte Entity -> Model
-    private DeviceModel toModel(DeviceEntity entity) {
+    private DeviceModel toModel(Device entity) {
         DeviceModel model = new DeviceModel();
         model.setId(entity.getId());
         model.setDeviceCodeIdentifier(entity.getDeviceCodeIdentifier());
@@ -23,40 +23,42 @@ public class DeviceApplication {
         model.setDeviceStatus(entity.getDeviceStatus());
         model.setDeviceSecretHash(entity.getDeviceSecretHash());
         model.setDeviceLastCommunication(entity.getDeviceLastCommunication());
+        model.setLocations(entity.getLocations());
         return model;
     }
 
     // Converte Model -> Entity
-    private DeviceEntity toEntity(DeviceModel model) {
-        DeviceEntity entity = new DeviceEntity();
+    private Device toEntity(DeviceModel model) {
+        Device entity = new Device();
         entity.setId(model.getId());
         entity.setDeviceCodeIdentifier(model.getDeviceCodeIdentifier());
         entity.setDeviceModel(model.getDeviceModel());
         entity.setDeviceStatus(model.getDeviceStatus());
         entity.setDeviceSecretHash(model.getDeviceSecretHash());
         entity.setDeviceLastCommunication(model.getDeviceLastCommunication());
+        entity.setLocations(model.getLocations());
         return entity;
     }
 
-    public DeviceEntity create(DeviceEntity entity) {
+    public Device create(Device entity) {
         DeviceModel saved = deviceRepository.save(toModel(entity));
         return toEntity(saved);
     }
 
-    public List<DeviceEntity> findAll() {
+    public List<Device> findAll() {
         return deviceRepository.findAll()
                 .stream()
                 .map(this::toEntity)
                 .collect(Collectors.toList());
     }
 
-    public DeviceEntity findById(int id) {
+    public Device findById(int id) {
         return deviceRepository.findById(id)
                 .map(this::toEntity)
                 .orElse(null);
     }
 
-    public DeviceEntity update(int id, DeviceEntity entity) {
+    public Device update(int id, Device entity) {
         if (!deviceRepository.existsById(id)) {
             return null;
         }

@@ -22,6 +22,9 @@ public class ReceiptApplication {
         model.setStatus(entity.getStatus());
         model.setPaymentDate(entity.getPaymentDate());
         model.setValuePaid(entity.getValuePaid());
+        model.setUserId(entity.getUserId());
+        model.setSubscriptionId(entity.getSubscriptionId());
+        model.setPaymentMethodId(entity.getPaymentMethodId());
         return model;
     }
 
@@ -32,6 +35,9 @@ public class ReceiptApplication {
         entity.setStatus(model.getStatus());
         entity.setPaymentDate(model.getPaymentDate());
         entity.setValuePaid(model.getValuePaid());
+        entity.setUserId(model.getUserId());
+        entity.setSubscriptionId(model.getSubscriptionId());
+        entity.setPaymentMethodId(model.getPaymentMethodId());
         return entity;
     }
 

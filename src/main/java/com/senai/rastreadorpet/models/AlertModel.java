@@ -1,5 +1,7 @@
 package com.senai.rastreadorpet.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.senai.rastreadorpet.models.enums.TypeAlertEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,6 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
 @Table(name = "alerts")
 public class AlertModel {
@@ -34,4 +37,11 @@ public class AlertModel {
     @ManyToOne
     @JoinColumn(name = "pet_id", referencedColumnName = "id", insertable = false, updatable = false)
     private PetModel pet;
+
+    @Column(name = "geofence_id")
+    private int geofenceId;
+
+    @ManyToOne
+    @JoinColumn(name = "geofence_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private GeofenceModel geofence;
 }

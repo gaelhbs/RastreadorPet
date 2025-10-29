@@ -1,6 +1,6 @@
 package com.senai.rastreadorpet.controllers;
 
-import com.senai.rastreadorpet.entities.DeviceEntity;
+import com.senai.rastreadorpet.entities.Device;
 import com.senai.rastreadorpet.facade.DeviceFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -9,34 +9,34 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/devices")
+@RequestMapping("api/devices")
 @RequiredArgsConstructor
 public class DeviceController {
     private final DeviceFacade deviceFacade;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<DeviceEntity> getAllDevice() {
-        List<DeviceEntity> Device = deviceFacade.findAll();
+    public List<Device> getAllDevice() {
+        List<Device> Device = deviceFacade.findAll();
         return deviceFacade.findAll();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public DeviceEntity createDevice(@RequestBody DeviceEntity device) {
+    public Device createDevice(@RequestBody Device device) {
         return deviceFacade.create(device);
 
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public DeviceEntity getDeviceById(@PathVariable int id) {
+    public Device getDeviceById(@PathVariable int id) {
         return deviceFacade.findById(id);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public DeviceEntity updateDevice(@PathVariable int id, @RequestBody DeviceEntity device) {
+    public Device updateDevice(@PathVariable int id, @RequestBody Device device) {
         return deviceFacade.update(id, device);
     }
 

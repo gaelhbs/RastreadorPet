@@ -1,5 +1,7 @@
 package com.senai.rastreadorpet.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.senai.rastreadorpet.models.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,8 +15,9 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
-@Table(name = "customers")
+@Table(name = "users")
 public class UserModel {
 
     @Id
@@ -68,21 +71,17 @@ public class UserModel {
     @Column(name = "user_preferences", columnDefinition = "json")
     private String preferences;
 
-    // Um usuário pode ter vários pets
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    List<PetModel> pets = new ArrayList<>();
+    private List<PetModel> pets = new ArrayList<>();
 
-    // Um usuário pode ter várias assinaturas - Eu acho que aqui é ManyToMany, com a tabela intermediária sendo assinaturas
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    List<SubscriptionModel> subscriptions = new ArrayList<>();
+    private List<SubscriptionModel> subscriptions = new ArrayList<>();
 
-    // Um usuário pode ter várias recebimentos
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    List<ReceiptModel> receipts = new ArrayList<>();
+    private List<ReceiptModel> receipts = new ArrayList<>();
 
-    // Um usuário pode ter várias cercas eletrônicas
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    List<GeofenceModel> geofences = new ArrayList<>();
+    private List<GeofenceModel> geofences = new ArrayList<>();
 
 
 

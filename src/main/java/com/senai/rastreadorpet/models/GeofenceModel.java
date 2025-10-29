@@ -1,13 +1,19 @@
 package com.senai.rastreadorpet.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
 @Table(name = "geofences")
 public class GeofenceModel {
@@ -26,9 +32,12 @@ public class GeofenceModel {
     private boolean active;
 
     @Column(name = "user_id")
-    private int UserId;
+    private int userId;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private UserModel user;
+
+    @OneToMany(mappedBy = "geofence", cascade = CascadeType.ALL)
+    private List<AlertModel> alerts = new ArrayList<>();
 }

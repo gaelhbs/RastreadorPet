@@ -1,6 +1,6 @@
 package com.senai.rastreadorpet.controllers;
 
-import com.senai.rastreadorpet.entities.AlertEntity;
+import com.senai.rastreadorpet.entities.Alert;
 import com.senai.rastreadorpet.facade.AlertFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,27 +17,27 @@ public class AlertController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<AlertEntity> getAllAlerts() {
-        List<AlertEntity> alerts = alertFacade.findAll();
+    public List<Alert> getAllAlerts() {
+        List<Alert> alerts = alertFacade.findAll();
         return alertFacade.findAll();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public AlertEntity createAlerts(@RequestBody AlertEntity alert) {
+    public Alert createAlerts(@RequestBody Alert alert) {
         return alertFacade.create(alert);
 
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public AlertEntity getAlertById(@PathVariable int id) {
+    public Alert getAlertById(@PathVariable int id) {
         return alertFacade.findById(id);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public AlertEntity updateAlert(@PathVariable int id, @RequestBody AlertEntity alert) {
+    public Alert updateAlert(@PathVariable int id, @RequestBody Alert alert) {
         return alertFacade.update(id, alert);
     }
 

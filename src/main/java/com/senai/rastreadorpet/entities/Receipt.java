@@ -17,5 +17,7 @@ public class Receipt {
     private BigDecimal valuePaid;
     private LocalDateTime paymentDate;
     private ReceiptStatus status;
-
+    private int userId;
+    private int subscriptionId;
+    private int paymentMethodId;
 }
