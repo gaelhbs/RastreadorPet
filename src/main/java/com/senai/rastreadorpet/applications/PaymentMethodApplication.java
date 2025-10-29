@@ -1,6 +1,9 @@
 package com.senai.rastreadorpet.applications;
 
+import com.senai.rastreadorpet.entities.PaymentMethod;
+import com.senai.rastreadorpet.entities.Subscription;
 import com.senai.rastreadorpet.models.PaymentMethodModel;
+import com.senai.rastreadorpet.models.SubscriptionModel;
 import com.senai.rastreadorpet.repositories.PaymentMethodRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,6 +14,28 @@ import java.util.List;
 public class PaymentMethodApplication {
 
     private final PaymentMethodRepository repository;
+
+    private PaymentMethodModel toModel(PaymentMethod entity) {
+        PaymentMethodModel model = new PaymentMethodModel();
+
+        model.setId(entity.getId());
+        model.setMethod(entity.getMethod());
+        model.setReceipt(entity.getReceipt());
+
+        return model;
+    }
+
+
+    private PaymentMethod toEntity(PaymentMethodModel model) {
+        PaymentMethod entity = new PaymentMethod();
+
+        entity.setId(model.getId());
+        entity.setMethod(model.getMethod());
+        entity.setReceipt(model.getReceipt());
+
+        return entity;
+    }
+
 
     public PaymentMethodModel findById(int id){
       return this.repository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));

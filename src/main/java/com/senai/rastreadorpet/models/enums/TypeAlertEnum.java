@@ -1,7 +1,7 @@
 package com.senai.rastreadorpet.models.enums;
 
 public enum TypeAlertEnum {
-    ENTRADA_GEOFENCE,
-    SAIDA_GEOFENCE,
-    BATERIA_BAIXA
+    GEOFENCE_ENTRY,
+    GEOFENCE_EXIT,
+    LOW_BATTERY
 }

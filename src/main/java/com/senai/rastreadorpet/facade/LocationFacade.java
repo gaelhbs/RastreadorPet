@@ -2,7 +2,7 @@ package com.senai.rastreadorpet.facade;
 
 import com.senai.rastreadorpet.applications.LocationApplication;
 
-import com.senai.rastreadorpet.entities.LocationEntity;
+import com.senai.rastreadorpet.entities.Location;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -13,19 +13,19 @@ import java.util.List;
 public class LocationFacade {
     private final LocationApplication locationApplication;
 
-    public LocationEntity create(LocationEntity location) {
+    public Location create(Location location) {
         return locationApplication.create(location);
     }
 
-    public List<LocationEntity> findAll() {
+    public List<Location> findAll() {
         return locationApplication.findAll();
     }
 
-    public LocationEntity findById(int id) {
+    public Location findById(int id) {
         return locationApplication.findById(id);
     }
 
-    public LocationEntity update(int id, LocationEntity entity) {
+    public Location update(int id, Location entity) {
         return locationApplication.update(id, entity);
     }
 

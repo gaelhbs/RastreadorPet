@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -17,7 +19,7 @@ public class DeviceModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    public Integer id;
+    public int id;
 
     @Column(name = "device_code_identifier", nullable = false, length = 100, unique = true)
     private String deviceCodeIdentifier;
@@ -33,4 +35,7 @@ public class DeviceModel {
 
     @Column(name = "device_last_communication")
     private LocalDateTime deviceLastCommunication;
+
+    @OneToMany(mappedBy = "device", cascade = CascadeType.ALL)
+    private List<LocationModel> locations = new ArrayList<>();
 }

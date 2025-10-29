@@ -1,7 +1,6 @@
 package com.senai.rastreadorpet.applications;
 
-import com.senai.rastreadorpet.entities.LocationEntity;
-import com.senai.rastreadorpet.models.DeviceModel;
+import com.senai.rastreadorpet.entities.Location;
 import com.senai.rastreadorpet.models.LocationModel;
 import com.senai.rastreadorpet.repositories.LocationRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,46 +15,48 @@ public class LocationApplication {
     private final LocationRepository locationRepository;
 
     // Converte Entity -> Model
-    private LocationModel toModel(LocationEntity entity) {
+    private LocationModel toModel(Location entity) {
         LocationModel model = new LocationModel();
         model.setId(entity.getId());
         model.setLatitude(entity.getLatitude());
         model.setLongitude(entity.getLongitude());
         model.setDateTime(entity.getDateTime());
         model.setBatteryLevel(entity.getBatteryLevel());
+        model.setDeviceId(entity.getDeviceId());
         return model;
     }
 
     // Converte Model -> Entity
-    private LocationEntity toEntity(LocationModel model) {
-        LocationEntity entity = new LocationEntity();
+    private Location toEntity(LocationModel model) {
+        Location entity = new Location();
         entity.setId(model.getId());
         entity.setLatitude(model.getLatitude());
         entity.setLongitude(model.getLongitude());
         entity.setDateTime(model.getDateTime());
         entity.setBatteryLevel(model.getBatteryLevel());
+        entity.setDeviceId(model.getDeviceId());
         return entity;
     }
 
-    public LocationEntity create(LocationEntity entity) {
+    public Location create(Location entity) {
         LocationModel saved = locationRepository.save(toModel(entity));
         return toEntity(saved);
     }
 
-    public List<LocationEntity> findAll() {
+    public List<Location> findAll() {
         return locationRepository.findAll()
                 .stream()
                 .map(this::toEntity)
                 .collect(Collectors.toList());
     }
 
-    public LocationEntity findById(int id) {
+    public Location findById(int id) {
         return locationRepository.findById(id)
                 .map(this::toEntity)
                 .orElse(null);
     }
 
-    public LocationEntity update(int id, LocationEntity entity) {
+    public Location update(int id, Location entity) {
         if (!locationRepository.existsById(id)) {
             return null;
         }

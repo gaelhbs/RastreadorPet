@@ -1,5 +1,7 @@
 package com.senai.rastreadorpet.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.senai.rastreadorpet.models.enums.PetGender;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,6 +15,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
 @Table(name = "pets")
 public class PetModel {
@@ -44,17 +47,15 @@ public class PetModel {
     @Column(name = "user_id")
     private int userId;
 
-    //Vários pets podem pertencer a um usuário
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private UserModel user;
 
-    //Um pet possui um dispositivo - Relação unidericional, pois o dispositivo não precisa saber de qual pet ele pertence
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "device_id", referencedColumnName = "id")
     private DeviceModel device;
 
-    //Um pet pode ter várias localizações registradas
     @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL)
     private List<AlertModel> alerts = new ArrayList<>();
 }

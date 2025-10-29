@@ -1,6 +1,6 @@
 package com.senai.rastreadorpet.applications;
 
-import com.senai.rastreadorpet.entities.PetEntity;
+import com.senai.rastreadorpet.entities.Pet;
 import com.senai.rastreadorpet.models.PetModel;
 import com.senai.rastreadorpet.repositories.PetRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class PetApplication {
     private final PetRepository petRepository;
 
     // Converte Entity -> Model
-    private PetModel toModel(PetEntity entity) {
+    private PetModel toModel(Pet entity) {
         PetModel model = new PetModel();
         model.setId(entity.getId());
         model.setName(entity.getName());
@@ -25,12 +25,14 @@ public class PetApplication {
         model.setBirthDate(entity.getBirthDate());
         model.setGender(entity.getGender());
         model.setPhotoUrl(entity.getPhotoUrl());
+        model.setUserId(entity.getUserId());
+        model.setAlerts(entity.getAlerts());
         return model;
     }
 
     // Converte Model -> Entity
-    private PetEntity toEntity(PetModel model) {
-        PetEntity entity = new PetEntity();
+    private Pet toEntity(PetModel model) {
+        Pet entity = new Pet();
         entity.setId(model.getId());
         entity.setName(model.getName());
         entity.setSpecies(model.getSpecies());
@@ -38,28 +40,30 @@ public class PetApplication {
         entity.setBirthDate(model.getBirthDate());
         entity.setGender(model.getGender());
         entity.setPhotoUrl(model.getPhotoUrl());
+        entity.setUserId(model.getUserId());
+        entity.setAlerts(model.getAlerts());
         return entity;
     }
 
-    public PetEntity create(PetEntity entity) {
+    public Pet create(Pet entity) {
         PetModel saved = petRepository.save(toModel(entity));
         return toEntity(saved);
     }
 
-    public List<PetEntity> findAll() {
+    public List<Pet> findAll() {
         return petRepository.findAll()
                 .stream()
                 .map(this::toEntity)
                 .collect(Collectors.toList());
     }
 
-    public PetEntity findById(int id) {
+    public Pet findById(int id) {
         return petRepository.findById(id)
                 .map(this::toEntity)
                 .orElse(null);
     }
 
-    public PetEntity update(int id, PetEntity entity) {
+    public Pet update(int id, Pet entity) {
         if (!petRepository.existsById(id)) {
             return null;
         }
