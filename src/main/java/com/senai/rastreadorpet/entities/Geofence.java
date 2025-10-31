@@ -17,5 +17,6 @@ public class Geofence {
     private float area;
     private boolean active;
     private int userId;
+    private int deviceId;
     private List<AlertModel> alerts = new ArrayList<>();
 }

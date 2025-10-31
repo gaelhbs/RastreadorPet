@@ -36,6 +36,16 @@ public class DeviceModel {
     @Column(name = "device_last_communication")
     private LocalDateTime deviceLastCommunication;
 
+    @Column(name = "user_id")
+    private int userId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id",  insertable = false, updatable = false)
+    private UserModel user;
+
     @OneToMany(mappedBy = "device", cascade = CascadeType.ALL)
     private List<LocationModel> locations = new ArrayList<>();
+
+    @OneToMany(mappedBy = "device", cascade = CascadeType.ALL)
+    private List<GeofenceModel> geofences = new ArrayList<>();
 }

@@ -24,6 +24,8 @@ public class DeviceApplication {
         model.setDeviceSecretHash(entity.getDeviceSecretHash());
         model.setDeviceLastCommunication(entity.getDeviceLastCommunication());
         model.setLocations(entity.getLocations());
+        model.setGeofences(entity.getGeofences());
+        model.setUserId(entity.getUserId());
         return model;
     }
 
@@ -37,6 +39,8 @@ public class DeviceApplication {
         entity.setDeviceSecretHash(model.getDeviceSecretHash());
         entity.setDeviceLastCommunication(model.getDeviceLastCommunication());
         entity.setLocations(model.getLocations());
+        entity.setGeofences(model.getGeofences());
+        entity.setUserId(model.getUserId());
         return entity;
     }
 

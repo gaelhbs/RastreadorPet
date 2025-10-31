@@ -26,7 +26,7 @@ public class PetApplication {
         model.setGender(entity.getGender());
         model.setPhotoUrl(entity.getPhotoUrl());
         model.setUserId(entity.getUserId());
-        model.setAlerts(entity.getAlerts());
+        model.setDeviceId(entity.getDeviceId());
         return model;
     }
 
@@ -41,7 +41,7 @@ public class PetApplication {
         entity.setGender(model.getGender());
         entity.setPhotoUrl(model.getPhotoUrl());
         entity.setUserId(model.getUserId());
-        entity.setAlerts(model.getAlerts());
+        entity.setDeviceId(model.getDeviceId());
         return entity;
     }
 

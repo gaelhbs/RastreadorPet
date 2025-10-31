@@ -37,7 +37,7 @@ public class UserApplication {
         model.setPets(entity.getPets());
         model.setSubscriptions(entity.getSubscriptions());
         model.setReceipts(entity.getReceipts());
-        model.setGeofences(entity.getGeofences());
+        model.setDevices(entity.getDevices());
         return model;
     }
 
@@ -63,7 +63,7 @@ public class UserApplication {
         entity.setPets(model.getPets());
         entity.setSubscriptions(model.getSubscriptions());
         entity.setReceipts(model.getReceipts());
-        entity.setGeofences(model.getGeofences());
+        entity.setDevices(model.getDevices());
         return entity;
     }
 

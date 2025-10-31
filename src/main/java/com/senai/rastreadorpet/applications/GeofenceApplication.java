@@ -22,8 +22,9 @@ public class GeofenceApplication {
         model.setActive(entity.isActive());
         model.setName(entity.getName());
         model.setArea(entity.getArea());
-        model.setUserId(entity.getUserId());
         model.setAlerts(entity.getAlerts());
+        model.setDeviceId(entity.getDeviceId());
+
         return model;
     }
 
@@ -34,8 +35,8 @@ public class GeofenceApplication {
         entity.setActive(model.isActive());
         entity.setName(model.getName());
         entity.setArea(model.getArea());
-        entity.setUserId(model.getUserId());
         entity.setAlerts(model.getAlerts());
+        entity.setDeviceId(model.getDeviceId());
         return entity;
     }
 

@@ -47,15 +47,15 @@ public class PetModel {
     @Column(name = "user_id")
     private int userId;
 
+    @Column(name = "device_id")
+    private int deviceId;
+
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private UserModel user;
 
-
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "device_id", referencedColumnName = "id")
+    @JoinColumn(name = "device_id", referencedColumnName = "id", insertable=false, updatable=false)
     private DeviceModel device;
 
-    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL)
-    private List<AlertModel> alerts = new ArrayList<>();
 }

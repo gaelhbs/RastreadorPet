@@ -15,6 +15,5 @@ public class Alert {
     private TypeAlertEnum typeAlert;
     private LocalDateTime dateTime;
     private Boolean alertRead;
-    private int petId;
     private int geofenceId;
 }
