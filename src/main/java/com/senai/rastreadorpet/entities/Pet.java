@@ -22,5 +22,5 @@ public class Pet {
     private PetGender gender;
     private String photoUrl;
     private int userId;
-    private List<AlertModel> alerts = new ArrayList<>();
+    private int deviceId;
 }

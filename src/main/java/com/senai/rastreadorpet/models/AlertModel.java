@@ -31,13 +31,6 @@ public class AlertModel {
     @Column(name = "alert_alertRead", nullable = false)
     private Boolean alertRead;
 
-    @Column(name = "pet_id")
-    private int petId;
-
-    @ManyToOne
-    @JoinColumn(name = "pet_id", referencedColumnName = "id", insertable = false, updatable = false)
-    private PetModel pet;
-
     @Column(name = "geofence_id")
     private int geofenceId;
 

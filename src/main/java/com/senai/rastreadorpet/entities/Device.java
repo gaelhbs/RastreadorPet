@@ -1,5 +1,6 @@
 package com.senai.rastreadorpet.entities;
 
+import com.senai.rastreadorpet.models.GeofenceModel;
 import com.senai.rastreadorpet.models.LocationModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,5 +20,7 @@ public class Device {
     private String deviceStatus;
     private String deviceSecretHash;
     private LocalDateTime deviceLastCommunication;
+    private int userId;
+    private List<GeofenceModel> geofences = new ArrayList<>();
     private List<LocationModel> locations = new ArrayList<>();
 }

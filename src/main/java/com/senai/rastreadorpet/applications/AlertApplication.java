@@ -21,7 +21,6 @@ public class AlertApplication {
         model.setAlertRead(entity.getAlertRead());
         model.setDateTime(entity.getDateTime());
         model.setTypeAlert(entity.getTypeAlert());
-        model.setPetId(entity.getPetId());
         model.setGeofenceId(entity.getGeofenceId());
         return model;
     }
@@ -32,7 +31,6 @@ public class AlertApplication {
         entity.setAlertRead(model.getAlertRead());
         entity.setDateTime(model.getDateTime());
         entity.setTypeAlert(model.getTypeAlert());
-        entity.setPetId(model.getPetId());
         entity.setGeofenceId(model.getGeofenceId());
         return entity;
     }

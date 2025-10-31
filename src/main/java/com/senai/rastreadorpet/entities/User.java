@@ -1,9 +1,6 @@
 package com.senai.rastreadorpet.entities;
 
-import com.senai.rastreadorpet.models.GeofenceModel;
-import com.senai.rastreadorpet.models.PetModel;
-import com.senai.rastreadorpet.models.ReceiptModel;
-import com.senai.rastreadorpet.models.SubscriptionModel;
+import com.senai.rastreadorpet.models.*;
 import com.senai.rastreadorpet.models.enums.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,8 +30,8 @@ public class User {
     private UserRole role;
     private LocalDateTime privacyConsentDate;
     private String preferences;
+    private List<DeviceModel> devices = new ArrayList<>();
     private List<PetModel> pets = new ArrayList<>();
     private List<SubscriptionModel> subscriptions = new ArrayList<>();
     private List<ReceiptModel> receipts = new ArrayList<>();
-    private List<GeofenceModel> geofences = new ArrayList<>();
 }
