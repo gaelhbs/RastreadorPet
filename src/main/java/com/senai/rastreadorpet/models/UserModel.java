@@ -81,8 +81,7 @@ public class UserModel {
     private List<ReceiptModel> receipts = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<GeofenceModel> geofences = new ArrayList<>();
-
+    private List<DeviceModel> devices = new ArrayList<>();
 
 
 }

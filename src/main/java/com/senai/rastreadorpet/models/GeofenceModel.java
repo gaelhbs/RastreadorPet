@@ -31,12 +31,12 @@ public class GeofenceModel {
     @Column(name = "geofence_active", nullable = false)
     private boolean active;
 
-    @Column(name = "user_id")
-    private int userId;
+    @Column(name = "device_id")
+    private int deviceId;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
-    private UserModel user;
+    @JoinColumn(name = "device_id", referencedColumnName = "id",  insertable = false, updatable = false)
+    private DeviceModel device;
 
     @OneToMany(mappedBy = "geofence", cascade = CascadeType.ALL)
     private List<AlertModel> alerts = new ArrayList<>();
