@@ -15,41 +15,21 @@ public class AlertApplication {
 
     private final AlertRepository alertRepository;
 
-    private AlertModel toModel(Alert entity) {
-        AlertModel model = new AlertModel();
-        model.setId(entity.getId());
-        model.setAlertRead(entity.getAlertRead());
-        model.setDateTime(entity.getDateTime());
-        model.setTypeAlert(entity.getTypeAlert());
-        model.setGeofenceId(entity.getGeofenceId());
-        return model;
-    }
-
-    private Alert toEntity(AlertModel model) {
-        Alert entity = new Alert();
-        entity.setId(model.getId());
-        entity.setAlertRead(model.getAlertRead());
-        entity.setDateTime(model.getDateTime());
-        entity.setTypeAlert(model.getTypeAlert());
-        entity.setGeofenceId(model.getGeofenceId());
-        return entity;
-    }
-
     public Alert create(Alert entity) {
-        AlertModel saved = alertRepository.save(toModel(entity));
-        return toEntity(saved);
+        AlertModel saved = alertRepository.save(entity.toModel());
+        return Alert.fromModel(saved);
     }
 
     public List<Alert> findAll() {
         return alertRepository.findAll()
                 .stream()
-                .map(this::toEntity)
+                .map(Alert::fromModel)
                 .collect(Collectors.toList());
     }
 
     public Alert findById(int id) {
         return alertRepository.findById(id)
-                .map(this::toEntity)
+                .map(Alert::fromModel)
                 .orElse(null);
     }
 
@@ -58,8 +38,8 @@ public class AlertApplication {
             return null;
         }
         entity.setId(id);
-        AlertModel updated = alertRepository.save(toModel(entity));
-        return toEntity(updated);
+        AlertModel updated = alertRepository.save(entity.toModel());
+        return Alert.fromModel(updated);
     }
 
     public void delete(int id) {

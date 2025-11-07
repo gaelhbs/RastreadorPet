@@ -4,7 +4,6 @@ import com.senai.rastreadorpet.applications.PaymentMethodApplication;
 import com.senai.rastreadorpet.entities.PaymentMethod;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 
 @Component
@@ -29,7 +28,8 @@ public class PaymentMethodFacade {
         return this.application.update(id, newData);
     }
 
-    public void delete(int id) {
+    public void delete(int id){
         this.application.delete(id);
     }
+
 }

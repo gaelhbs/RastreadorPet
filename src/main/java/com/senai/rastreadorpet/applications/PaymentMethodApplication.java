@@ -5,7 +5,6 @@ import com.senai.rastreadorpet.models.PaymentMethodModel;
 import com.senai.rastreadorpet.repositories.PaymentMethodRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -2,11 +2,15 @@ package com.senai.rastreadorpet.applications;
 
 
 import com.senai.rastreadorpet.entities.MonthlyPlan;
+import com.senai.rastreadorpet.entities.Pet;
+import com.senai.rastreadorpet.entities.Receipt;
 import com.senai.rastreadorpet.models.MonthlyPlanModel;
+import com.senai.rastreadorpet.models.ReceiptModel;
 import com.senai.rastreadorpet.repositories.MonthlyPlanRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -14,56 +18,35 @@ public class MonthlyPlanApplication {
 
     private final MonthlyPlanRepository repository;
 
-    private MonthlyPlanModel toModel(MonthlyPlan entity) {
-        MonthlyPlanModel model = new MonthlyPlanModel();
-
-        model.setId(entity.getId());
-        model.setName(entity.getName());
-        model.setDescription(entity.getDescription());
-        model.setPrice(entity.getPrice());
-        model.setSubscriptions(entity.getSubscriptions());
-
-        return model;
+    public MonthlyPlan create(MonthlyPlan entity) {
+        MonthlyPlanModel saved = repository.save(entity.toModel());
+        return MonthlyPlan.fromModel(saved);
     }
 
-    private MonthlyPlan toEntity(MonthlyPlanModel model) {
-        MonthlyPlan entity = new MonthlyPlan();
-
-        entity.setId(model.getId());
-        entity.setName(model.getName());
-        entity.setDescription(model.getDescription());
-        entity.setPrice(model.getPrice());
-        entity.setSubscriptions(model.getSubscriptions());
-
-        return entity;
+    public MonthlyPlan findById(int id) {
+        return repository.findById(id)
+                .map(MonthlyPlan::fromModel)
+                .orElse(null);
     }
 
-
-    public MonthlyPlanModel findById(int id){
-        return this.repository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
+    public List<MonthlyPlan> findAll() {
+        return repository.findAll()
+                .stream()
+                .map(MonthlyPlan::fromModel)
+                .collect(Collectors.toList());
     }
 
-    public List<MonthlyPlanModel> findAll(){
-        return this.repository.findAll();
+    public MonthlyPlan update(int id, MonthlyPlan entity) {
+        if (!repository.existsById(id)) {
+            return null;
+        }
+        entity.setId(id);
+        MonthlyPlanModel updated = repository.save(entity.toModel());
+        return MonthlyPlan.fromModel(updated);
     }
 
-    public void create(MonthlyPlanModel model){
-        this.repository.save(model);
-    }
-
-    public MonthlyPlanModel update(int id, MonthlyPlanModel newData) {
-        return this.repository.findById(id).map(exist -> {
-            exist.setName(newData.getName());
-            exist.setDescription(newData.getDescription());
-            exist.setPrice(newData.getPrice());
-            return this.repository.save(exist);
-        }).orElseThrow(() -> new RuntimeException("Not found"));
-    }
-
-    public void delete(int id){
-        MonthlyPlanModel model = this.repository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
-
-        this.repository.delete(model);
+    public void delete(int id) {
+        repository.deleteById(id);
     }
 
 }

@@ -14,51 +14,21 @@ import java.util.stream.Collectors;
 public class DeviceApplication {
     private final DeviceRepository deviceRepository;
 
-    // Converte Entity -> Model
-    private DeviceModel toModel(Device entity) {
-        DeviceModel model = new DeviceModel();
-        model.setId(entity.getId());
-        model.setDeviceCodeIdentifier(entity.getDeviceCodeIdentifier());
-        model.setDeviceModel(entity.getDeviceModel());
-        model.setDeviceStatus(entity.getDeviceStatus());
-        model.setDeviceSecretHash(entity.getDeviceSecretHash());
-        model.setDeviceLastCommunication(entity.getDeviceLastCommunication());
-        model.setLocations(entity.getLocations());
-        model.setGeofences(entity.getGeofences());
-        model.setUserId(entity.getUserId());
-        return model;
-    }
-
-    // Converte Model -> Entity
-    private Device toEntity(DeviceModel model) {
-        Device entity = new Device();
-        entity.setId(model.getId());
-        entity.setDeviceCodeIdentifier(model.getDeviceCodeIdentifier());
-        entity.setDeviceModel(model.getDeviceModel());
-        entity.setDeviceStatus(model.getDeviceStatus());
-        entity.setDeviceSecretHash(model.getDeviceSecretHash());
-        entity.setDeviceLastCommunication(model.getDeviceLastCommunication());
-        entity.setLocations(model.getLocations());
-        entity.setGeofences(model.getGeofences());
-        entity.setUserId(model.getUserId());
-        return entity;
-    }
-
     public Device create(Device entity) {
-        DeviceModel saved = deviceRepository.save(toModel(entity));
-        return toEntity(saved);
+        DeviceModel saved = deviceRepository.save(entity.toModel());
+        return Device.fromModel(saved);
     }
 
     public List<Device> findAll() {
         return deviceRepository.findAll()
                 .stream()
-                .map(this::toEntity)
+                .map(Device::fromModel)
                 .collect(Collectors.toList());
     }
 
     public Device findById(int id) {
         return deviceRepository.findById(id)
-                .map(this::toEntity)
+                .map(Device::fromModel)
                 .orElse(null);
     }
 
@@ -67,12 +37,11 @@ public class DeviceApplication {
             return null;
         }
         entity.setId(id);
-        DeviceModel updated = deviceRepository.save(toModel(entity));
-        return toEntity(updated);
+        DeviceModel updated = deviceRepository.save(entity.toModel());
+        return Device.fromModel(updated);
     }
 
     public void delete(int id) {
         deviceRepository.deleteById(id);
     }
-
 }
