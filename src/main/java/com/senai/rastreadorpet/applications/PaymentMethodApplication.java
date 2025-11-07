@@ -1,13 +1,15 @@
 package com.senai.rastreadorpet.applications;
 
-import com.senai.rastreadorpet.entities.PaymentMethod;
-import com.senai.rastreadorpet.entities.Subscription;
+import com.senai.rastreadorpet.entities.*;
+import com.senai.rastreadorpet.models.MonthlyPlanModel;
 import com.senai.rastreadorpet.models.PaymentMethodModel;
+import com.senai.rastreadorpet.models.ReceiptModel;
 import com.senai.rastreadorpet.models.SubscriptionModel;
 import com.senai.rastreadorpet.repositories.PaymentMethodRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -37,30 +39,34 @@ public class PaymentMethodApplication {
     }
 
 
-    public PaymentMethodModel findById(int id){
-      return this.repository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
+    public PaymentMethod findById(int id) {
+        return repository.findById(id)
+                .map(this::toEntity)
+                .orElse(null);
     }
 
-    public List<PaymentMethodModel> findAll(){
-        return this.repository.findAll();
+    public List<PaymentMethod> findAll() {
+        return repository.findAll()
+                .stream()
+                .map(this::toEntity)
+                .collect(Collectors.toList());
     }
 
-    public void create(PaymentMethodModel model){
-        this.repository.save(model);
+    public PaymentMethod create(PaymentMethod entity){
+        PaymentMethodModel saved = this.repository.save(toModel(entity));;
+        return toEntity(saved);
     }
 
-    public PaymentMethodModel update(int id, PaymentMethodModel newData) {
-        return this.repository.findById(id).map(exist -> {
-                    exist.setMethod(newData.getMethod());
-                    return this.repository.save(exist);
-                }).orElseThrow(() -> new RuntimeException("Not found"));
+    public PaymentMethod update(int id, PaymentMethod entity) {
+        if (!repository.existsById(id)) {
+            return null;
+        }
+        entity.setId(id);
+        PaymentMethodModel updated = repository.save(toModel(entity));
+        return toEntity(updated);
     }
 
-    public void delete(int id){
-        PaymentMethodModel model = this.repository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
-
-        this.repository.delete(model);
-
-}
-
+    public void delete(int id) {
+        repository.deleteById(id);
+    }
 }
