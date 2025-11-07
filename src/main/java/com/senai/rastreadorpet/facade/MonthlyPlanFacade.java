@@ -1,6 +1,7 @@
 package com.senai.rastreadorpet.facade;
 
 import com.senai.rastreadorpet.applications.MonthlyPlanApplication;
+import com.senai.rastreadorpet.entities.MonthlyPlan;
 import com.senai.rastreadorpet.models.MonthlyPlanModel;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -12,19 +13,19 @@ public class MonthlyPlanFacade {
 
     private final MonthlyPlanApplication application;
 
-    public MonthlyPlanModel findById(int id){
+    public MonthlyPlan findById(int id){
         return this.application.findById(id);
     }
 
-    public List<MonthlyPlanModel> listAll(){
+    public List<MonthlyPlan> listAll(){
         return this.application.findAll();
     }
 
-    public void create(MonthlyPlanModel model){
-        this.application.create(model);
+    public void create(MonthlyPlan monthlyPlan){
+        this.application.create(monthlyPlan);
     }
 
-    public MonthlyPlanModel update(int id, MonthlyPlanModel newData) {
+    public MonthlyPlan update(int id, MonthlyPlan newData) {
         return this.application.update(id, newData);
     }
 

@@ -12,8 +12,8 @@ import java.util.List;
 public class AlertFacade {
     private final AlertApplication alertApplication;
 
-    public Alert create(Alert pet) {
-        return alertApplication.create(pet);
+    public Alert create(Alert entity) {
+        return alertApplication.create(entity);
     }
 
     public List<Alert> findAll() {

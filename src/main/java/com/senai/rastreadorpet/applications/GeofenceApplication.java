@@ -14,47 +14,21 @@ import java.util.stream.Collectors;
 public class GeofenceApplication {
     private final GeofenceRepository geofenceRepository;
 
-
-    // Converte Entity -> Model
-    private GeofenceModel toModel(Geofence entity) {
-        GeofenceModel model = new GeofenceModel();
-        model.setId(entity.getId());
-        model.setActive(entity.isActive());
-        model.setName(entity.getName());
-        model.setArea(entity.getArea());
-        model.setAlerts(entity.getAlerts());
-        model.setDeviceId(entity.getDeviceId());
-
-        return model;
-    }
-
-    // Converte Model -> Entity
-    private Geofence toEntity(GeofenceModel model) {
-        Geofence entity = new Geofence();
-        entity.setId(model.getId());
-        entity.setActive(model.isActive());
-        entity.setName(model.getName());
-        entity.setArea(model.getArea());
-        entity.setAlerts(model.getAlerts());
-        entity.setDeviceId(model.getDeviceId());
-        return entity;
-    }
-
     public Geofence create(Geofence entity) {
-        GeofenceModel saved = geofenceRepository.save(toModel(entity));
-        return toEntity(saved);
+        GeofenceModel saved = geofenceRepository.save(entity.toModel());
+        return Geofence.fromModel(saved);
     }
 
     public List<Geofence> findAll() {
         return geofenceRepository.findAll()
                 .stream()
-                .map(this::toEntity)
+                .map(Geofence::fromModel)
                 .collect(Collectors.toList());
     }
 
     public Geofence findById(int id) {
         return geofenceRepository.findById(id)
-                .map(this::toEntity)
+                .map(Geofence::fromModel)
                 .orElse(null);
     }
 
@@ -63,8 +37,8 @@ public class GeofenceApplication {
             return null;
         }
         entity.setId(id);
-        GeofenceModel updated = geofenceRepository.save(toModel(entity));
-        return toEntity(updated);
+        GeofenceModel updated = geofenceRepository.save(entity.toModel());
+        return Geofence.fromModel(updated);
     }
 
     public void delete(int id) {
