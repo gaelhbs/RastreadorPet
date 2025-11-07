@@ -15,47 +15,21 @@ public class ReceiptApplication {
 
     private final ReceiptRepository receiptRepository;
 
-    // Converte Entity -> Model
-    private ReceiptModel toModel(Receipt entity) {
-        ReceiptModel model = new ReceiptModel();
-        model.setId(entity.getId());
-        model.setStatus(entity.getStatus());
-        model.setPaymentDate(entity.getPaymentDate());
-        model.setValuePaid(entity.getValuePaid());
-        model.setUserId(entity.getUserId());
-        model.setSubscriptionId(entity.getSubscriptionId());
-        model.setPaymentMethodId(entity.getPaymentMethodId());
-        return model;
-    }
-
-    // Converte Model -> Entity
-    private Receipt toEntity(ReceiptModel model) {
-        Receipt entity = new Receipt();
-        entity.setId(model.getId());
-        entity.setStatus(model.getStatus());
-        entity.setPaymentDate(model.getPaymentDate());
-        entity.setValuePaid(model.getValuePaid());
-        entity.setUserId(model.getUserId());
-        entity.setSubscriptionId(model.getSubscriptionId());
-        entity.setPaymentMethodId(model.getPaymentMethodId());
-        return entity;
-    }
-
     public Receipt create(Receipt entity) {
-        ReceiptModel saved = receiptRepository.save(toModel(entity));
-        return toEntity(saved);
+        ReceiptModel saved = receiptRepository.save(entity.toModel());
+        return Receipt.fromModel(saved);
     }
 
     public List<Receipt> findAll() {
         return receiptRepository.findAll()
                 .stream()
-                .map(this::toEntity)
+                .map(Receipt::fromModel)
                 .collect(Collectors.toList());
     }
 
     public Receipt findById(int id) {
         return receiptRepository.findById(id)
-                .map(this::toEntity)
+                .map(Receipt::fromModel)
                 .orElse(null);
     }
 
@@ -64,12 +38,11 @@ public class ReceiptApplication {
             return null;
         }
         entity.setId(id);
-        ReceiptModel updated = receiptRepository.save(toModel(entity));
-        return toEntity(updated);
+        ReceiptModel updated = receiptRepository.save(entity.toModel());
+        return Receipt.fromModel(updated);
     }
 
     public void delete(int id) {
         receiptRepository.deleteById(id);
     }
-
 }

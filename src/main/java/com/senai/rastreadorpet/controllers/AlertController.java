@@ -18,13 +18,12 @@ public class AlertController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Alert> getAllAlerts() {
-        List<Alert> alerts = alertFacade.findAll();
         return alertFacade.findAll();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Alert createAlerts(@RequestBody Alert alert) {
+    public Alert createAlert(@RequestBody Alert alert) {
         return alertFacade.create(alert);
 
     }

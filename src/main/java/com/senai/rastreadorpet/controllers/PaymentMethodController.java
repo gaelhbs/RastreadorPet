@@ -1,5 +1,6 @@
 package com.senai.rastreadorpet.controllers;
 
+import com.senai.rastreadorpet.entities.PaymentMethod;
 import com.senai.rastreadorpet.facade.PaymentMethodFacade;
 import com.senai.rastreadorpet.models.PaymentMethodModel;
 import lombok.RequiredArgsConstructor;
@@ -17,25 +18,25 @@ public class PaymentMethodController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<PaymentMethodModel> getAllPaymentMethods() {
+    public List<PaymentMethod> getAllPaymentMethods() {
         return paymentMethodFacade.findAll();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public PaymentMethodModel getPaymentMethodById(@PathVariable int id) {
+    public PaymentMethod getPaymentMethodById(@PathVariable int id) {
         return paymentMethodFacade.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createPaymentMethod(@RequestBody PaymentMethodModel model) {
-        paymentMethodFacade.create(model);
+    public PaymentMethod createPaymentMethod(@RequestBody PaymentMethod entity) {
+        return paymentMethodFacade.create(entity);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public PaymentMethodModel updatePaymentMethod(@PathVariable int id, @RequestBody PaymentMethodModel newData) {
+    public PaymentMethod updatePaymentMethod(@PathVariable int id, @RequestBody PaymentMethod newData) {
         return paymentMethodFacade.update(id, newData);
     }
 

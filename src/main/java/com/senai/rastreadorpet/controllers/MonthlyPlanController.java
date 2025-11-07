@@ -1,5 +1,6 @@
 package com.senai.rastreadorpet.controllers;
 
+import com.senai.rastreadorpet.entities.MonthlyPlan;
 import com.senai.rastreadorpet.facade.MonthlyPlanFacade;
 import com.senai.rastreadorpet.models.MonthlyPlanModel;
 import lombok.RequiredArgsConstructor;
@@ -16,25 +17,25 @@ public class MonthlyPlanController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<MonthlyPlanModel> getAllPlans() {
+    public List<MonthlyPlan> getAllPlans() {
         return monthlyPlanFacade.listAll();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public MonthlyPlanModel getPlanById(@PathVariable int id) {
+    public MonthlyPlan getPlanById(@PathVariable int id) {
         return monthlyPlanFacade.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createPlan(@RequestBody MonthlyPlanModel model) {
-        monthlyPlanFacade.create(model);
+    public void createPlan(@RequestBody MonthlyPlan entity) {
+        monthlyPlanFacade.create(entity);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public MonthlyPlanModel updatePlan(@PathVariable int id, @RequestBody MonthlyPlanModel newData) {
+    public MonthlyPlan updatePlan(@PathVariable int id, @RequestBody MonthlyPlan newData) {
         return monthlyPlanFacade.update(id, newData);
     }
 
