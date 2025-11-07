@@ -30,8 +30,8 @@ public class PaymentMethodController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createPaymentMethod(@RequestBody PaymentMethod entity) {
-        paymentMethodFacade.create(entity);
+    public PaymentMethod createPaymentMethod(@RequestBody PaymentMethod entity) {
+        return paymentMethodFacade.create(entity);
     }
 
     @PutMapping("/{id}")

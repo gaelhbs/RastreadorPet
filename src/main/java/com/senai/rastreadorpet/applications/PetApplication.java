@@ -15,51 +15,21 @@ public class PetApplication {
 
     private final PetRepository petRepository;
 
-    // Converte Entity -> Model
-    private PetModel toModel(Pet entity) {
-        PetModel model = new PetModel();
-        model.setId(entity.getId());
-        model.setName(entity.getName());
-        model.setSpecies(entity.getSpecies());
-        model.setBreed(entity.getBreed());
-        model.setBirthDate(entity.getBirthDate());
-        model.setGender(entity.getGender());
-        model.setPhotoUrl(entity.getPhotoUrl());
-        model.setUserId(entity.getUserId());
-        model.setDeviceId(entity.getDeviceId());
-        return model;
-    }
-
-    // Converte Model -> Entity
-    private Pet toEntity(PetModel model) {
-        Pet entity = new Pet();
-        entity.setId(model.getId());
-        entity.setName(model.getName());
-        entity.setSpecies(model.getSpecies());
-        entity.setBreed(model.getBreed());
-        entity.setBirthDate(model.getBirthDate());
-        entity.setGender(model.getGender());
-        entity.setPhotoUrl(model.getPhotoUrl());
-        entity.setUserId(model.getUserId());
-        entity.setDeviceId(model.getDeviceId());
-        return entity;
-    }
-
     public Pet create(Pet entity) {
-        PetModel saved = petRepository.save(toModel(entity));
-        return toEntity(saved);
+        PetModel saved = petRepository.save(entity.toModel());
+        return Pet.fromModel(saved);
     }
 
     public List<Pet> findAll() {
         return petRepository.findAll()
                 .stream()
-                .map(this::toEntity)
+                .map(Pet::fromModel)
                 .collect(Collectors.toList());
     }
 
     public Pet findById(int id) {
         return petRepository.findById(id)
-                .map(this::toEntity)
+                .map(Pet::fromModel)
                 .orElse(null);
     }
 
@@ -68,8 +38,8 @@ public class PetApplication {
             return null;
         }
         entity.setId(id);
-        PetModel updated = petRepository.save(toModel(entity));
-        return toEntity(updated);
+        PetModel updated = petRepository.save(entity.toModel());
+        return Pet.fromModel(updated);
     }
 
     public void delete(int id) {
