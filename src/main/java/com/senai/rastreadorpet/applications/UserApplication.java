@@ -15,73 +15,21 @@ public class UserApplication {
 
     private final UserRepository userRepository;
 
-    // Converte Entity -> Model
-    private UserModel toModel(User entity) {
-        UserModel model = new UserModel();
-        model.setId(entity.getId());
-        model.setFullName(entity.getFullName());
-        model.setEmail(entity.getEmail());
-        model.setPassword(entity.getPassword());
-        model.setPhone(entity.getPhone());
-        model.setPostalCode(entity.getPostalCode());
-        model.setStreet(entity.getStreet());
-        model.setNumber(entity.getNumber());
-        model.setComplement(entity.getComplement());
-        model.setNeighborhood(entity.getNeighborhood());
-        model.setCity(entity.getCity());
-        model.setState(entity.getState());
-        model.setRegistrationDate(entity.getRegistrationDate());
-        model.setRole(entity.getRole());
-        model.setPrivacyConsentDate(entity.getPrivacyConsentDate());
-        model.setPreferences(entity.getPreferences());
-        model.setPets(entity.getPets());
-        model.setSubscriptions(entity.getSubscriptions());
-        model.setReceipts(entity.getReceipts());
-        model.setDevices(entity.getDevices());
-        return model;
-    }
-
-    // Converte Model -> Entity
-    private User toEntity(UserModel model) {
-        User entity = new User();
-        entity.setId(model.getId());
-        entity.setFullName(model.getFullName());
-        entity.setEmail(model.getEmail());
-        entity.setPassword(model.getPassword());
-        entity.setPhone(model.getPhone());
-        entity.setPostalCode(model.getPostalCode());
-        entity.setStreet(model.getStreet());
-        entity.setNumber(model.getNumber());
-        entity.setComplement(model.getComplement());
-        entity.setNeighborhood(model.getNeighborhood());
-        entity.setCity(model.getCity());
-        entity.setState(model.getState());
-        entity.setRegistrationDate(model.getRegistrationDate());
-        entity.setRole(model.getRole());
-        entity.setPrivacyConsentDate(model.getPrivacyConsentDate());
-        entity.setPreferences(model.getPreferences());
-        entity.setPets(model.getPets());
-        entity.setSubscriptions(model.getSubscriptions());
-        entity.setReceipts(model.getReceipts());
-        entity.setDevices(model.getDevices());
-        return entity;
-    }
-
     public User create(User entity) {
-        UserModel saved = userRepository.save(toModel(entity));
-        return toEntity(saved);
+        UserModel saved = userRepository.save(entity.toModel());
+        return User.fromModel(saved);
     }
 
     public List<User> findAll() {
         return userRepository.findAll()
                 .stream()
-                .map(this::toEntity)
+                .map(User::fromModel)
                 .collect(Collectors.toList());
     }
 
     public User findById(int id) {
         return userRepository.findById(id)
-                .map(this::toEntity)
+                .map(User::fromModel)
                 .orElse(null);
     }
 
@@ -90,8 +38,8 @@ public class UserApplication {
             return null;
         }
         entity.setId(id);
-        UserModel updated = userRepository.save(toModel(entity));
-        return toEntity(updated);
+        UserModel updated = userRepository.save(entity.toModel());
+        return User.fromModel(updated);
     }
 
     public void delete(int id) {
