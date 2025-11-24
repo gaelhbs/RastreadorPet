@@ -41,4 +41,18 @@ public class Location {
                 model.getDeviceId()
         );
     }
+
+    public void updateData(BigDecimal latitude, BigDecimal longitude, LocalDateTime dateTime, BigDecimal batteryLevel, int deviceId) {
+        if (latitude == null || longitude == null) {
+            throw new IllegalArgumentException("Latitude e longitude não podem ser nulas");
+        }
+        if (dateTime == null) {
+            throw new IllegalArgumentException("Data/hora não pode ser nula");
+        }
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.dateTime = dateTime;
+        this.batteryLevel = batteryLevel;
+        this.deviceId = deviceId;
+    }
 }

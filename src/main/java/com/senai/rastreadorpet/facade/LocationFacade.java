@@ -3,6 +3,7 @@ package com.senai.rastreadorpet.facade;
 import com.senai.rastreadorpet.applications.LocationApplication;
 
 import com.senai.rastreadorpet.entities.Location;
+import com.senai.rastreadorpet.dto.LocationUpdateDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -25,8 +26,8 @@ public class LocationFacade {
         return locationApplication.findById(id);
     }
 
-    public Location update(int id, Location entity) {
-        return locationApplication.update(id, entity);
+    public Location update(int id, LocationUpdateDTO locationUpdateDTO) {
+        return locationApplication.update(id, locationUpdateDTO);
     }
 
     public void delete(int id) {

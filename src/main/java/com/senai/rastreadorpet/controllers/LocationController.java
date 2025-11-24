@@ -2,6 +2,7 @@ package com.senai.rastreadorpet.controllers;
 
 import com.senai.rastreadorpet.entities.Location;
 import com.senai.rastreadorpet.facade.LocationFacade;
+import com.senai.rastreadorpet.dto.LocationUpdateDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -34,10 +35,11 @@ public class LocationController {
         return locationFacade.findById(id);
     }
 
-    @PutMapping("/{id}")
+
+    @PutMapping("/{id}/update-dto")
     @ResponseStatus(HttpStatus.OK)
-    public Location updateLocationEntity(@PathVariable int id, @RequestBody Location location) {
-        return locationFacade.update(id, location);
+    public Location updateLocationWithDTO(@PathVariable int id, @RequestBody LocationUpdateDTO locationUpdateDTO) {
+        return locationFacade.update(id, locationUpdateDTO);
     }
 
     @DeleteMapping("/{id}")
