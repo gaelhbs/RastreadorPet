@@ -63,24 +63,21 @@ public class LocationApplication {
         locationRepository.deleteById(id);
     }
 
-    public void checkLocationAndGenerateAlert(double latitude, double longitude) {
-        if (geofenceApplication.isLocationOutsideGeofence(latitude, longitude)) {
+    public void checkLocationAndGenerateAlert(int deviceId, double latitude, double longitude) {
 
-            Geofence relevantGeofence = geofenceApplication.findRelevantGeofence();
+        Geofence violatedGeofence = geofenceApplication.findViolatedGeofence(deviceId,latitude, longitude);
 
-            if (relevantGeofence != null) {
-                Alert alert = new Alert();
-
-                alert.setMessage("Location is outside the geofence radius."); // OK
-                alert.setGeofenceId(relevantGeofence.getId());
-
-                alert.setTypeAlert(TypeAlertEnum.GEOFENCE_EXIT);
-                alert.setAlertRead(false);
-                alert.setDateTime(LocalDateTime.now());
+            if (violatedGeofence != null) {
+                Alert alert = Alert.builder()
+                        .message("Location is outside the geofence radius." + " Coordinates: " + latitude + ", " + longitude)
+                        .alertRead(false)
+                        .typeAlert(TypeAlertEnum.GEOFENCE_EXIT)
+                        .dateTime(LocalDateTime.now())
+                        .geofenceId(violatedGeofence.getId())
+                        .build();
 
                 alertRepository.save(alert.toModel());
-                log.warn("Location is outside the geofence radius. Coordinates: {}, {}", latitude, longitude);
+                log.warn(alert.getMessage());
             }
-        }
     }
 }

@@ -17,14 +17,13 @@ import static com.senai.rastreadorpet.mappers.LocationHistoryMapper.LOCATION_HIS
 
 @Service
 @RequiredArgsConstructor
-public class IngestionService {
+public class IngestionApplication {
 
     private final LocationHistoryRepository locationHistoryRepository;
 
     @Transactional
     public void processIngestedData(DeviceDataIngestDTO data) {
 
-        // 1. Validação
         if (data == null || data.getHistoricLocations() == null || data.getHistoricLocations().isEmpty()) {
             System.out.println("Dados de ingestão vazios. Nenhum histórico para processar.");
             return;
@@ -38,10 +37,8 @@ public class IngestionService {
                         .filter(model -> model.getDateTime() != null)
                         .collect(Collectors.toList());
 
-        // 3. Persistência em Lote (Batch Save)
+
         if (!historyModels.isEmpty()) {
-            // Em um cenário de alto volume, considere o uso de JdbcTemplate para inserção em lote
-            // otimizada, mas JpaRepository.saveAll é a solução padrão do Spring.
             locationHistoryRepository.saveAll(historyModels);
             System.out.println("SUCESSO: " + historyModels.size() + " registros de histórico salvos no Aurora para o Dispositivo ID: " + deviceId);
         } else {

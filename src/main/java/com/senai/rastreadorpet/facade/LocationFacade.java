@@ -38,7 +38,7 @@ public class LocationFacade {
         locationApplication.delete(id);
     }
 
-    public void checkLocationAndGenerateAlert(double latitude, double longitude) {
-        locationApplication.checkLocationAndGenerateAlert(latitude, longitude);
+    public void checkLocationAndGenerateAlert(int deviceId, double latitude, double longitude) {
+        locationApplication.checkLocationAndGenerateAlert(deviceId, latitude, longitude);
     }
 }

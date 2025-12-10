@@ -36,7 +36,7 @@ public class LocationController {
     }
 
 
-    @PutMapping("/{id}/update-dto")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Location updateLocation(@PathVariable int id, @RequestBody LocationUpdateDTO locationUpdateDTO) {
         return locationFacade.update(id, locationUpdateDTO);
@@ -51,6 +51,6 @@ public class LocationController {
     @PostMapping("/check-location/{deviceId}")
     @ResponseStatus(HttpStatus.OK)
     public void checkLocation(@PathVariable int deviceId, @RequestParam double latitude, @RequestParam double longitude) {
-        locationFacade.checkLocationAndGenerateAlert(latitude, longitude);
+        locationFacade.checkLocationAndGenerateAlert(deviceId, latitude, longitude);
     }
 }

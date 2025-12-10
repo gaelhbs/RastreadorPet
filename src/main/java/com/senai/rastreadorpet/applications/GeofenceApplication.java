@@ -7,7 +7,6 @@ import com.senai.rastreadorpet.repositories.GeofenceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -55,15 +54,26 @@ public class GeofenceApplication {
         geofenceRepository.deleteById(id);
     }
 
-    public boolean isLocationOutsideGeofence(double latitude, double longitude) {
-        List<Geofence> geofences = findAll();
-        for (Geofence geofence : geofences) {
+    public Geofence findViolatedGeofence(int deviceId, double latitude, double longitude) {
+
+        List<Geofence> relevantGeofences = geofenceRepository.findByDeviceId(deviceId)
+                .stream()
+                .map(Geofence::fromModel)
+                .toList();
+
+        if (relevantGeofences.isEmpty()) {
+            return null;
+        }
+
+        for (Geofence geofence : relevantGeofences) {
             double distance = calculateDistance(latitude, longitude, geofence.getLatitude(), geofence.getLongitude());
+
             if (distance <= geofence.getRadius()) {
-                return false;
+                return null;
             }
         }
-        return true;
+
+        return relevantGeofences.getFirst();
     }
 
     private double calculateDistance(double lat1, double lon1, double lat2, double lon2) {
@@ -75,14 +85,5 @@ public class GeofenceApplication {
                 * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return EARTH_RADIUS * c;
-    }
-    public Geofence findRelevantGeofence() {
-        List<Geofence> geofences = findAll();
-
-        if (geofences.isEmpty()) {
-            return null;
-        }
-
-        return geofences.getFirst();
     }
 }

@@ -1,6 +1,6 @@
 package com.senai.rastreadorpet.controllers;
 
-import com.senai.rastreadorpet.applications.IngestionService;
+import com.senai.rastreadorpet.applications.IngestionApplication;
 import com.senai.rastreadorpet.dto.DeviceDataIngestDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class IngestionController {
 
-    private final IngestionService ingestionService;
+    private final IngestionApplication ingestionService;
 
     @PostMapping("/data")
     @ResponseStatus(HttpStatus.ACCEPTED)

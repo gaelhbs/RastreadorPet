@@ -3,6 +3,7 @@ package com.senai.rastreadorpet.entities;
 import com.senai.rastreadorpet.models.AlertModel;
 import com.senai.rastreadorpet.models.enums.TypeAlertEnum;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
+@Builder(toBuilder = true)
 @AllArgsConstructor
 public class Alert {
     private int id;
