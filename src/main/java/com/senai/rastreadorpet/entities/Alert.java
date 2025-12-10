@@ -17,6 +17,7 @@ public class Alert {
     private LocalDateTime dateTime;
     private Boolean alertRead;
     private int geofenceId;
+    private String message;
 
     public AlertModel toModel() {
             return new AlertModel(
@@ -24,8 +25,10 @@ public class Alert {
                     this.typeAlert,
                     this.dateTime,
                     this.alertRead,
+                    this.message,
                     this.geofenceId,
                     null
+
             );
     }
 
@@ -35,7 +38,8 @@ public class Alert {
                 model.getTypeAlert(),
                 model.getDateTime(),
                 model.getAlertRead(),
-                model.getGeofenceId()
+                model.getGeofenceId(),
+                model.getMessage()
         );
     }
 

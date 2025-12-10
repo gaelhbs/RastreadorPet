@@ -31,10 +31,14 @@ public class AlertModel {
     @Column(name = "alert_alertRead", nullable = false)
     private Boolean alertRead;
 
+    @Column(name = "alert_message", nullable = false)
+    private String message;
+
     @Column(name = "geofence_id")
     private int geofenceId;
 
     @ManyToOne
     @JoinColumn(name = "geofence_id", referencedColumnName = "id", insertable = false, updatable = false)
     private GeofenceModel geofence;
+
 }

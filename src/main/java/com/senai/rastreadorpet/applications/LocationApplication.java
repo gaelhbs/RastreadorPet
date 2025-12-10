@@ -1,12 +1,18 @@
 package com.senai.rastreadorpet.applications;
 
 import com.senai.rastreadorpet.dto.LocationUpdateDTO;
+import com.senai.rastreadorpet.entities.Alert;
+import com.senai.rastreadorpet.entities.Geofence;
 import com.senai.rastreadorpet.entities.Location;
 import com.senai.rastreadorpet.models.LocationModel;
+import com.senai.rastreadorpet.models.enums.TypeAlertEnum;
+import com.senai.rastreadorpet.repositories.AlertRepository;
 import com.senai.rastreadorpet.repositories.LocationRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,9 +20,12 @@ import static com.senai.rastreadorpet.mappers.LocationMapper.LOCATION_MAPPER;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class LocationApplication {
 
     private final LocationRepository locationRepository;
+    private final AlertRepository alertRepository;
+    private final GeofenceApplication geofenceApplication;
 
     public Location create(Location entity) {
         LocationModel saved = locationRepository.save(entity.toModel());
@@ -54,4 +63,24 @@ public class LocationApplication {
         locationRepository.deleteById(id);
     }
 
+    public void checkLocationAndGenerateAlert(double latitude, double longitude) {
+        if (geofenceApplication.isLocationOutsideGeofence(latitude, longitude)) {
+
+            Geofence relevantGeofence = geofenceApplication.findRelevantGeofence();
+
+            if (relevantGeofence != null) {
+                Alert alert = new Alert();
+
+                alert.setMessage("Location is outside the geofence radius."); // OK
+                alert.setGeofenceId(relevantGeofence.getId());
+
+                alert.setTypeAlert(TypeAlertEnum.GEOFENCE_EXIT);
+                alert.setAlertRead(false);
+                alert.setDateTime(LocalDateTime.now());
+
+                alertRepository.save(alert.toModel());
+                log.warn("Location is outside the geofence radius. Coordinates: {}, {}", latitude, longitude);
+            }
+        }
+    }
 }

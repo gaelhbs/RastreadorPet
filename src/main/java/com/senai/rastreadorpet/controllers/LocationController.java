@@ -38,13 +38,19 @@ public class LocationController {
 
     @PutMapping("/{id}/update-dto")
     @ResponseStatus(HttpStatus.OK)
-    public Location updateLocationWithDTO(@PathVariable int id, @RequestBody LocationUpdateDTO locationUpdateDTO) {
+    public Location updateLocation(@PathVariable int id, @RequestBody LocationUpdateDTO locationUpdateDTO) {
         return locationFacade.update(id, locationUpdateDTO);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteLocationEntity(@PathVariable int id) {
+    public void deleteLocation(@PathVariable int id) {
         locationFacade.delete(id);
+    }
+
+    @PostMapping("/check-location/{deviceId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void checkLocation(@PathVariable int deviceId, @RequestParam double latitude, @RequestParam double longitude) {
+        locationFacade.checkLocationAndGenerateAlert(latitude, longitude);
     }
 }
