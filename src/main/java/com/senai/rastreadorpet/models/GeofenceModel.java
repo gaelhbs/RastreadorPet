@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +32,18 @@ public class GeofenceModel {
     @Column(name = "geofence_active", nullable = false)
     private boolean active;
 
+    @Column(name = "geofence_latitude", nullable = false)
+    private double latitude;
+
+    @Column(name = "geofence_longitude", nullable = false)
+    private double longitude;
+
+    @Column(name = "geofence_radius", nullable = false)
+    private double radius;
+
     @Column(name = "device_id")
     private int deviceId;
+
 
     @ManyToOne
     @JoinColumn(name = "device_id", referencedColumnName = "id",  insertable = false, updatable = false)
