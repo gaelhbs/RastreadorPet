@@ -1,6 +1,7 @@
-
 package com.senai.rastreadorpet.controllers;
 
+import com.senai.rastreadorpet.dto.GeofenceDTO;
+import com.senai.rastreadorpet.dto.GeofenceUpdateDTO;
 import com.senai.rastreadorpet.entities.Geofence;
 import com.senai.rastreadorpet.facade.GeofenceFacade;
 import lombok.RequiredArgsConstructor;
@@ -25,8 +26,8 @@ public class GeofenceController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Geofence createGeofence(@RequestBody Geofence geofence) {
-        return geofenceFacade.create(geofence);
+    public Geofence createGeofence(@RequestBody GeofenceDTO geofenceDTO) {
+        return geofenceFacade.save(geofenceDTO);
 
     }
 
@@ -38,8 +39,8 @@ public class GeofenceController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Geofence updateGeofence(@PathVariable int id, @RequestBody Geofence geofence) {
-        return geofenceFacade.update(id, geofence);
+    public Geofence updateGeofence(@PathVariable int id, @RequestBody GeofenceUpdateDTO geofenceUpdateDTO) {
+        return geofenceFacade.update(id, geofenceUpdateDTO);
     }
 
     @DeleteMapping("/{id}")

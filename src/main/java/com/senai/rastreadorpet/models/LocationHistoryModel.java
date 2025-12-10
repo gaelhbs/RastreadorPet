@@ -22,8 +22,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Entity
-@Table(name = "locations")
-public class LocationModel {
+@Table(name = "location_history")
+public class LocationHistoryModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,6 +46,6 @@ public class LocationModel {
     private int deviceId;
 
     @ManyToOne
-    @JoinColumn(name = "device_id",  referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "device_id", referencedColumnName = "id", insertable = false, updatable = false)
     private DeviceModel device;
 }

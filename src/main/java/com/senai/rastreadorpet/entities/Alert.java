@@ -3,6 +3,7 @@ package com.senai.rastreadorpet.entities;
 import com.senai.rastreadorpet.models.AlertModel;
 import com.senai.rastreadorpet.models.enums.TypeAlertEnum;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
+@Builder(toBuilder = true)
 @AllArgsConstructor
 public class Alert {
     private int id;
@@ -17,6 +19,7 @@ public class Alert {
     private LocalDateTime dateTime;
     private Boolean alertRead;
     private int geofenceId;
+    private String message;
 
     public AlertModel toModel() {
             return new AlertModel(
@@ -24,8 +27,10 @@ public class Alert {
                     this.typeAlert,
                     this.dateTime,
                     this.alertRead,
+                    this.message,
                     this.geofenceId,
                     null
+
             );
     }
 
@@ -35,7 +40,8 @@ public class Alert {
                 model.getTypeAlert(),
                 model.getDateTime(),
                 model.getAlertRead(),
-                model.getGeofenceId()
+                model.getGeofenceId(),
+                model.getMessage()
         );
     }
 

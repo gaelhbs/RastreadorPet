@@ -1,18 +1,24 @@
 package com.senai.rastreadorpet.facade;
 
 import com.senai.rastreadorpet.applications.GeofenceApplication;
+import com.senai.rastreadorpet.dto.GeofenceDTO;
+import com.senai.rastreadorpet.dto.GeofenceUpdateDTO;
 import com.senai.rastreadorpet.entities.Geofence;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+import static com.senai.rastreadorpet.mappers.GeofenceMapper.GEOFENCE_MAPPER;
+
+@Service
 @RequiredArgsConstructor
 public class GeofenceFacade {
+
     private final GeofenceApplication geofenceApplication;
 
-    public Geofence create(Geofence geofence) {
+    public Geofence save(GeofenceDTO geofenceDTO) {
+        Geofence geofence = GEOFENCE_MAPPER.toEntity(geofenceDTO);
         return geofenceApplication.create(geofence);
     }
 
@@ -24,11 +30,12 @@ public class GeofenceFacade {
         return geofenceApplication.findById(id);
     }
 
-    public Geofence update(int id, Geofence geofence) {
-        return geofenceApplication.update(id, geofence);
+    public Geofence update(int id, GeofenceUpdateDTO geofenceUpdateDTO) {
+        return geofenceApplication.update(id, geofenceUpdateDTO);
     }
 
     public void delete(int id) {
         geofenceApplication.delete(id);
     }
+
 }
