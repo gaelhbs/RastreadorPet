@@ -17,8 +17,9 @@ public class GeofenceFacade {
 
     private final GeofenceApplication geofenceApplication;
 
-    public Geofence save(GeofenceDTO geofenceDTO) {
+    public Geofence save(int deviceId, GeofenceDTO geofenceDTO) {
         Geofence geofence = GEOFENCE_MAPPER.toEntity(geofenceDTO);
+        geofence.setDeviceId(deviceId);
         return geofenceApplication.create(geofence);
     }
 

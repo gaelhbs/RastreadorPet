@@ -8,4 +8,5 @@ public class GeofenceDTO {
     private double latitude;
     private double longitude;
     private double radius;
+    private int deviceId;
 }

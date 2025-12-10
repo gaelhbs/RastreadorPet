@@ -24,10 +24,10 @@ public class GeofenceController {
         return geofenceFacade.findAll();
     }
 
-    @PostMapping
+    @PostMapping("/{deviceId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Geofence createGeofence(@RequestBody GeofenceDTO geofenceDTO) {
-        return geofenceFacade.save(geofenceDTO);
+    public Geofence createGeofence(@PathVariable int deviceId, @RequestBody GeofenceDTO geofenceDTO) {
+        return geofenceFacade.save(deviceId,geofenceDTO);
 
     }
 
