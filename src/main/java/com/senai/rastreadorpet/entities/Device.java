@@ -3,6 +3,7 @@ package com.senai.rastreadorpet.entities;
 import com.senai.rastreadorpet.models.DeviceModel;
 import com.senai.rastreadorpet.models.GeofenceModel;
 import com.senai.rastreadorpet.models.LocationModel;
+import com.senai.rastreadorpet.models.PetModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class Device {
     private String deviceSecretHash;
     private LocalDateTime deviceLastCommunication;
     private int userId;
+    private PetModel pet;
     private List<GeofenceModel> geofences = new ArrayList<>();
     private List<LocationModel> locations = new ArrayList<>();
 
@@ -35,6 +37,7 @@ public class Device {
                 this.deviceLastCommunication,
                 this.userId,
                 null,
+                this.pet,
                 this.locations,
                 this.geofences
         );
@@ -49,6 +52,7 @@ public class Device {
                 model.getDeviceSecretHash(),
                 model.getDeviceLastCommunication(),
                 model.getUserId(),
+                model.getPet(),
                 model.getGeofences(),
                 model.getLocations()
         );
