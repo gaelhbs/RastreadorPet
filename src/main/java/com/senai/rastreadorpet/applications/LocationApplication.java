@@ -31,6 +31,11 @@ public class LocationApplication {
     private final GeofenceApplication geofenceApplication;
 
     public Location create(Location entity) {
+
+        if (entity.getLocationDateTime() == null) {
+            entity.setLocationDateTime(LocalDateTime.now());
+        }
+
         LocationModel saved = locationRepository.save(entity.toModel());
         return Location.fromModel(saved);
     }

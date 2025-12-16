@@ -29,11 +29,14 @@ public class LocationModel {
     @Column(name = "location_longitude", nullable = false, precision = 10, scale = 7)
     private BigDecimal longitude;
 
-    @Column(name = "location_date_time", nullable = false)
+    @Column(name = "location_date_time", nullable = true)
     private LocalDateTime locationDateTime;
 
     @Column(name = "location_battery_level", precision = 5, scale = 2)
     private BigDecimal batteryLevel;
+
+    @Column(name = "location_distance")
+    private float distance;
 
     @Column(name = "device_id")
     private int deviceId;
