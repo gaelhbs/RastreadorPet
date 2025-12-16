@@ -1,8 +1,8 @@
 package com.senai.rastreadorpet.controllers;
 
+import com.senai.rastreadorpet.dto.LocationUpdateDTO;
 import com.senai.rastreadorpet.entities.Location;
 import com.senai.rastreadorpet.facade.LocationFacade;
-import com.senai.rastreadorpet.dto.LocationUpdateDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/locations")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:5173")
 public class LocationController {
     private final LocationFacade locationFacade;
 
@@ -20,6 +21,18 @@ public class LocationController {
     public List<Location> getAllLocation() {
         List<Location> location = locationFacade.findAll();
         return locationFacade.findAll();
+    }
+
+    @GetMapping("/today")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Location> getLocationsToday() {
+        return locationFacade.findLocationsToday();
+    }
+
+    @GetMapping("/this-month")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Location> getLocationsThisMonth() {
+        return locationFacade.findLocationsThisMonth();
     }
 
     @PostMapping

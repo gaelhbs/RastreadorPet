@@ -15,18 +15,20 @@ public class Location {
     private int id;
     private BigDecimal latitude;
     private BigDecimal longitude;
-    private LocalDateTime dateTime;
+    private LocalDateTime locationDateTime;
     private BigDecimal batteryLevel;
     private int deviceId;
+    private String zoneName;
 
     public LocationModel toModel() {
         return new LocationModel(
                 this.id,
                 this.latitude,
                 this.longitude,
-                this.dateTime,
+                this.locationDateTime,
                 this.batteryLevel,
                 this.deviceId,
+                this.zoneName,
                 null
         );
     }
@@ -36,9 +38,10 @@ public class Location {
                 model.getId(),
                 model.getLatitude(),
                 model.getLongitude(),
-                model.getDateTime(),
+                model.getLocationDateTime(),
                 model.getBatteryLevel(),
-                model.getDeviceId()
+                model.getDeviceId(),
+                model.getZoneName()
         );
     }
 
@@ -51,7 +54,7 @@ public class Location {
         }
         this.latitude = latitude;
         this.longitude = longitude;
-        this.dateTime = dateTime;
+        this.locationDateTime = dateTime;
         this.batteryLevel = batteryLevel;
         this.deviceId = deviceId;
     }
