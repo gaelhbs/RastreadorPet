@@ -12,7 +12,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,6 +31,11 @@ public class LocationApplication {
     private final GeofenceApplication geofenceApplication;
 
     public Location create(Location entity) {
+
+        if (entity.getLocationDateTime() == null) {
+            entity.setLocationDateTime(LocalDateTime.now());
+        }
+
         LocationModel saved = locationRepository.save(entity.toModel());
         return Location.fromModel(saved);
     }
@@ -36,6 +44,26 @@ public class LocationApplication {
         return locationRepository.findAll()
                 .stream()
                 .map(Location::fromModel)
+                .collect(Collectors.toList());
+    }
+
+    public List<Location> findLocationsToday() {
+        LocalDate today = LocalDate.now();
+        LocalDateTime startOfDay = LocalDateTime.of(today, LocalTime.MIN);
+
+        return locationRepository.findByLocationDateTimeAfter(startOfDay)
+                .stream()
+                .map(LOCATION_MAPPER::toEntity)
+                .collect(Collectors.toList());
+    }
+
+    public List<Location> findLocationsThisMonth() {
+        LocalDate firstDayOfMonth = LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());
+        LocalDateTime startOfMonth = LocalDateTime.of(firstDayOfMonth, LocalTime.MIN);
+
+        return locationRepository.findByLocationDateTimeAfter(startOfMonth)
+                .stream()
+                .map(LOCATION_MAPPER::toEntity)
                 .collect(Collectors.toList());
     }
 
@@ -65,19 +93,19 @@ public class LocationApplication {
 
     public void checkLocationAndGenerateAlert(int deviceId, double latitude, double longitude) {
 
-        Geofence violatedGeofence = geofenceApplication.findViolatedGeofence(deviceId,latitude, longitude);
+        Geofence violatedGeofence = geofenceApplication.findViolatedGeofence(deviceId, latitude, longitude);
 
-            if (violatedGeofence != null) {
-                Alert alert = Alert.builder()
-                        .message("Location is outside the geofence radius." + " Coordinates: " + latitude + ", " + longitude)
-                        .alertRead(false)
-                        .typeAlert(TypeAlertEnum.GEOFENCE_EXIT)
-                        .dateTime(LocalDateTime.now())
-                        .geofenceId(violatedGeofence.getId())
-                        .build();
+        if (violatedGeofence != null) {
+            Alert alert = Alert.builder()
+                    .message("Location is outside the geofence radius." + " Coordinates: " + latitude + ", " + longitude)
+                    .alertRead(false)
+                    .typeAlert(TypeAlertEnum.GEOFENCE_EXIT)
+                    .dateTime(LocalDateTime.now())
+                    .geofenceId(violatedGeofence.getId())
+                    .build();
 
-                alertRepository.save(alert.toModel());
-                log.warn(alert.getMessage());
-            }
+            alertRepository.save(alert.toModel());
+            log.warn(alert.getMessage());
+        }
     }
 }

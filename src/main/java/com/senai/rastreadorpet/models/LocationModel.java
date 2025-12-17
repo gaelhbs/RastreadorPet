@@ -2,14 +2,7 @@ package com.senai.rastreadorpet.models;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,14 +29,20 @@ public class LocationModel {
     @Column(name = "location_longitude", nullable = false, precision = 10, scale = 7)
     private BigDecimal longitude;
 
-    @Column(name = "location_date_time", nullable = false)
-    private LocalDateTime dateTime;
+    @Column(name = "location_date_time", nullable = true)
+    private LocalDateTime locationDateTime;
 
     @Column(name = "location_battery_level", precision = 5, scale = 2)
     private BigDecimal batteryLevel;
 
+    @Column(name = "location_distance")
+    private float distance;
+
     @Column(name = "device_id")
     private int deviceId;
+
+    @Column(name = "location_name_zone")
+    private String zoneName;
 
     @ManyToOne
     @JoinColumn(name = "device_id",  referencedColumnName = "id", insertable = false, updatable = false)

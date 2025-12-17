@@ -15,18 +15,22 @@ public class Location {
     private int id;
     private BigDecimal latitude;
     private BigDecimal longitude;
-    private LocalDateTime dateTime;
+    private LocalDateTime locationDateTime;
     private BigDecimal batteryLevel;
+    private float distance;
     private int deviceId;
+    private String zoneName;
 
     public LocationModel toModel() {
         return new LocationModel(
                 this.id,
                 this.latitude,
                 this.longitude,
-                this.dateTime,
+                this.locationDateTime,
                 this.batteryLevel,
+                this.distance,
                 this.deviceId,
+                this.zoneName,
                 null
         );
     }
@@ -36,13 +40,15 @@ public class Location {
                 model.getId(),
                 model.getLatitude(),
                 model.getLongitude(),
-                model.getDateTime(),
+                model.getLocationDateTime(),
                 model.getBatteryLevel(),
-                model.getDeviceId()
+                model.getDistance(),
+                model.getDeviceId(),
+                model.getZoneName()
         );
     }
 
-    public void updateData(BigDecimal latitude, BigDecimal longitude, LocalDateTime dateTime, BigDecimal batteryLevel, int deviceId) {
+    public void updateData(BigDecimal latitude, BigDecimal longitude, LocalDateTime dateTime, BigDecimal batteryLevel, float distance, int deviceId) {
         if (latitude == null || longitude == null) {
             throw new IllegalArgumentException("Latitude e longitude não podem ser nulas");
         }
@@ -51,8 +57,9 @@ public class Location {
         }
         this.latitude = latitude;
         this.longitude = longitude;
-        this.dateTime = dateTime;
+        this.locationDateTime = dateTime;
         this.batteryLevel = batteryLevel;
+        this.distance = distance;
         this.deviceId = deviceId;
     }
 }

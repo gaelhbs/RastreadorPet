@@ -26,6 +26,14 @@ public class LocationFacade {
         return locationApplication.findAll();
     }
 
+    public List<Location> findLocationsToday() {
+        return locationApplication.findLocationsToday();
+    }
+
+    public List<Location> findLocationsThisMonth() {
+        return locationApplication.findLocationsThisMonth();
+    }
+
     public Location findById(int id) {
         return locationApplication.findById(id);
     }
